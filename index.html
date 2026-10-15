@@ -1,0 +1,2431 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K Chandana | Computer Science & Design Engineering Portfolio</title>
+  <meta name="description" content="Portfolio of K Chandana - 4th-Year Computer Science and Design Student, AI/ML Developer, Hackathon Winner.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Stylesheet with CSD Cyber Aesthetics -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#070b14] text-slate-100 transition-colors duration-300 selection:bg-indigo-500 selection:text-white cyber-grid relative min-h-screen">
+
+  <!-- ==================== 3D COMPUTER SCIENCE DEPARTMENT DYNAMIC BACKGROUND ==================== -->
+  <canvas id="cs-dept-3d-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+  <!-- Ambient Light Orbs -->
+  <div class="fixed top-0 left-1/3 w-[38rem] h-[38rem] bg-indigo-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
+  <div class="fixed bottom-1/4 right-1/4 w-[32rem] h-[32rem] bg-emerald-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
+
+  <!-- Top System Status HUD Bar with Live Clock & Latency -->
+  <div class="border-b border-slate-800/80 bg-slate-950/70 text-[11px] font-mono text-slate-400 py-1.5 px-4 sm:px-8 hidden sm:flex items-center justify-between backdrop-blur-md z-50 relative">
+    <div class="flex items-center gap-4">
+      <span class="flex items-center gap-1.5 text-indigo-400 font-semibold">
+        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span> BRANCH: COMPUTER SCIENCE & DESIGN
+      </span>
+      <span class="text-slate-600">|</span>
+      <span>STATUS: 4TH-YEAR UNDERGRADUATE</span>
+      <span class="text-slate-600">|</span>
+      <span class="text-emerald-400 font-bold">CGPA: 8.0 / 10</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <span id="live-clock" class="text-cyan-400 font-bold">KOPPAL, IN: --:--:-- IST</span>
+      <span class="text-slate-600">|</span>
+      <span id="live-ping" class="text-emerald-400 font-bold">LATENCY: 24ms</span>
+      <span class="text-slate-600">|</span>
+      <span class="text-amber-400 font-semibold"><i class="fas fa-trophy mr-1"></i>HACKATHON WINNER</span>
+    </div>
+  </div>
+
+  <!-- Sticky Glassmorphic Navbar -->
+  <header class="sticky top-0 z-40 bg-[#070b14]/85 backdrop-blur-xl border-b border-slate-800/80 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Logo / Monogram -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-emerald-400 flex items-center justify-center text-white font-black text-base shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform">
+          KC
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-white group-hover:text-indigo-400 transition-colors tracking-tight text-base sm:text-lg">K Chandana</span>
+            <span class="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">CSD</span>
+          </div>
+          <span class="text-[10px] font-mono text-slate-400 leading-none">AI/ML & Systems Engineer</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden xl:flex items-center gap-5 text-xs uppercase tracking-wider font-mono text-slate-300">
+        <a href="#csd-matrix" class="desktop-nav-link hover:text-indigo-400 transition-colors">CSD Core</a>
+        <a href="#studio" class="desktop-nav-link hover:text-indigo-400 transition-colors text-cyan-300 font-semibold"><i class="fas fa-flask mr-1"></i>Studio</a>
+        <a href="#skills" class="desktop-nav-link hover:text-indigo-400 transition-colors text-purple-300 font-semibold"><i class="fas fa-layer-group mr-1"></i>Skills</a>
+        <a href="#projects" class="desktop-nav-link hover:text-indigo-400 transition-colors">Systems</a>
+        <a href="#achievements" class="desktop-nav-link hover:text-indigo-400 transition-colors">Awards</a>
+        <a href="#certifications" class="desktop-nav-link hover:text-indigo-400 transition-colors">Certs</a>
+        <a href="#education" class="desktop-nav-link hover:text-indigo-400 transition-colors">Education</a>
+        <a href="#contact" class="desktop-nav-link hover:text-indigo-400 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-2">
+        
+        <!-- Command Palette Trigger Button (Ctrl+K) -->
+        <button class="open-palette-btn hidden lg:inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white text-xs font-mono transition-colors">
+          <i class="fas fa-search text-[10px]"></i>
+          <span>Cmd+K</span>
+        </button>
+
+        <!-- Blueprint / Wireframe Mode Toggle -->
+        <button id="blueprint-btn" onclick="toggleBlueprintMode()" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-950/40 hover:bg-cyan-900/50 border border-cyan-500/30 text-cyan-300 text-xs font-mono transition-all" title="Toggle CSD Architectural Wireframe / Blueprint Mode">
+          <i class="fas fa-drafting-compass text-cyan-400 text-xs"></i>
+          <span id="blueprint-btn-text">Blueprint</span>
+        </button>
+
+        <!-- Design Tokens Inspector Button -->
+        <button onclick="openDesignTokensModal()" class="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-purple-300 text-xs font-mono transition-all" title="Inspect CSD Design System Tokens & Palette">
+          <i class="fas fa-swatchbook text-purple-400 text-xs"></i>
+          <span>Tokens</span>
+        </button>
+
+        <!-- Recruiter Fast-Track Pitch Button -->
+        <button onclick="openRecruiterModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-mono font-semibold transition-all">
+          <i class="fas fa-bolt text-amber-400 text-xs"></i>
+          <span>Pitch 60s</span>
+        </button>
+
+        <!-- Floating Terminal CLI Button -->
+        <button onclick="openFloatingCliModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-cyan-300 text-xs font-mono transition-all">
+          <i class="fas fa-terminal text-[11px]"></i>
+          <span>CLI</span>
+        </button>
+
+        <!-- Official Resume Document Viewer Button -->
+        <button onclick="openResumeDocModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-mono font-semibold shadow-md shadow-indigo-600/20 transition-all hover:scale-105">
+          <i class="fas fa-file-invoice text-xs"></i>
+          <span>Resume Doc</span>
+        </button>
+
+        <!-- Audio SFX Toggle Button with Animated Equalizer -->
+        <button id="audio-toggle" aria-label="Toggle SFX Audio" class="px-2.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white flex items-center gap-2 transition-colors" title="Toggle Cyber Sound Effects">
+          <div id="eq-indicator" class="eq-container">
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+          </div>
+          <i id="audio-icon" class="fas fa-volume-mute text-xs"></i>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" aria-label="Toggle Theme" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+          <i id="theme-icon" class="fas fa-sun text-xs"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" aria-label="Toggle Mobile Menu" class="2xl:hidden w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white flex items-center justify-center">
+          <i class="fas fa-bars text-sm"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobile-menu" class="hidden 2xl:hidden border-t border-slate-800/80 bg-slate-950/95 backdrop-blur-xl px-4 py-4 space-y-3 font-mono text-xs">
+      <div class="grid grid-cols-2 gap-2 pb-2 border-b border-slate-800">
+        <button onclick="openResumeDocModal()" class="w-full py-2 px-3 rounded-lg bg-indigo-600 text-white text-center font-bold">
+          <i class="fas fa-file-invoice mr-1.5"></i> Resume Doc
+        </button>
+        <button onclick="openRecruiterModal()" class="w-full py-2 px-3 rounded-lg bg-amber-600/20 border border-amber-500/30 text-amber-300 text-center font-bold">
+          <i class="fas fa-bolt mr-1.5"></i> Pitch 60s
+        </button>
+      </div>
+      <div class="grid grid-cols-2 gap-2 pb-2 border-b border-slate-800">
+        <button onclick="toggleBlueprintMode()" class="w-full py-2 px-3 rounded-lg bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-center font-bold">
+          <i class="fas fa-drafting-compass mr-1.5"></i> Blueprint
+        </button>
+        <button onclick="openDesignTokensModal()" class="w-full py-2 px-3 rounded-lg bg-purple-950/40 border border-purple-500/30 text-purple-300 text-center font-bold">
+          <i class="fas fa-swatchbook mr-1.5"></i> Tokens
+        </button>
+      </div>
+      <button class="open-palette-btn w-full py-2 px-3 rounded-lg bg-slate-900 border border-slate-800 text-left text-slate-300 flex items-center justify-between">
+        <span><i class="fas fa-search mr-2"></i>Search Command Palette</span>
+        <span class="text-[10px] bg-slate-800 px-1.5 py-0.5 rounded">Ctrl+K</span>
+      </button>
+      <a href="#csd-matrix" class="mobile-nav-link block text-slate-300 hover:text-indigo-400 py-1">CSD Philosophy</a>
+      <a href="#studio" class="mobile-nav-link block text-cyan-300 hover:text-cyan-200 py-1 font-bold">Interactive Simulation Studio</a>
+      <a href="#skills" class="mobile-nav-link block text-purple-300 hover:text-purple-200 py-1 font-bold">Technical Skills & Competencies</a>
+      <a href="#projects" class="mobile-nav-link block text-slate-300 hover:text-indigo-400 py-1">Engineering Projects</a>
+      <a href="#achievements" class="mobile-nav-link block text-slate-300 hover:text-indigo-400 py-1">Hackathon Awards</a>
+      <a href="#education" class="mobile-nav-link block text-slate-300 hover:text-indigo-400 py-1">Education</a>
+      <a href="#contact" class="mobile-nav-link block text-slate-300 hover:text-indigo-400 py-1">Contact</a>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 py-10 md:py-16">
+
+    <!-- ==================== HERO SECTION (CSD DUAL CORE) ==================== -->
+    <section id="hero" class="relative pt-4 sm:pt-10">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Hero Details Column -->
+        <div class="lg:col-span-8 space-y-6">
+          
+          <!-- Cyber HUD Pill -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full csd-badge text-xs font-mono text-indigo-300">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>COMPUTER SCIENCE & DESIGN ENGINEERING // 4TH YEAR</span>
+          </div>
+
+          <!-- Main Name & Dynamic Role -->
+          <div class="space-y-3">
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight font-display">
+              <span class="gradient-heading">K Chandana</span>
+            </h1>
+
+            <!-- Animated Typing Terminal Role -->
+            <div class="flex items-center gap-2 text-base sm:text-xl md:text-2xl font-mono text-cyan-400 font-medium min-h-[38px]">
+              <span class="text-indigo-400">$</span>
+              <span id="typing-text"></span>
+              <span class="typing-cursor"></span>
+            </div>
+          </div>
+
+          <!-- Exact Resume Summary Statement -->
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
+            4th-year CSD engineering student with hands-on experience developing AI-powered applications, predictive models, NLP systems, Python backends, and REST APIs. Experienced with LSTM, ARIMA, XGBoost, forecasting, text embeddings, Flask, FastAPI, React, and data processing. Hackathon winner with projects focused on solving real-world problems in agriculture, healthcare, and public assistance.
+          </p>
+
+          <!-- Contact Coordinates Strip -->
+          <div class="flex flex-wrap items-center gap-y-2 gap-x-5 text-xs text-slate-400 font-mono pt-1">
+            <span class="flex items-center gap-1.5">
+              <i class="fas fa-map-pin text-rose-400"></i> Koppal 583231, Karnataka
+            </span>
+            <span class="flex items-center gap-1.5">
+              <i class="fas fa-envelope text-indigo-400"></i> kchandu12212004@gmail.com
+            </span>
+            <span class="flex items-center gap-1.5">
+              <i class="fas fa-phone-alt text-emerald-400"></i> +91 9353799298
+            </span>
+          </div>
+
+          <!-- Action CTAs -->
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button onclick="openResumeDocModal()" class="px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-mono font-semibold text-xs tracking-wide shadow-xl shadow-indigo-600/30 transition-all hover:scale-105 inline-flex items-center gap-2">
+              <i class="fas fa-file-invoice"></i> View Official Resume
+            </button>
+            <button onclick="openRecruiterModal()" class="px-5 py-3 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 font-mono text-xs transition-all hover:scale-105 inline-flex items-center gap-2">
+              <i class="fas fa-bolt text-amber-400"></i> 60s Fast-Track Pitch
+            </button>
+            <a href="#studio" class="px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-cyan-300 font-mono text-xs transition-all hover:scale-105 inline-flex items-center gap-2">
+              <i class="fas fa-flask"></i> Studio
+            </a>
+            <a href="#api-explorer" class="px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-emerald-300 font-mono text-xs transition-all hover:scale-105 inline-flex items-center gap-2">
+              <i class="fas fa-network-wired"></i> REST API
+            </a>
+            <a href="https://github.com/chandana-agm" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white transition-all hover:scale-105" title="GitHub Profile">
+              <i class="fab fa-github text-base"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/k-chandana-2a945a3b8/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white transition-all hover:scale-105" title="LinkedIn Profile">
+              <i class="fab fa-linkedin-in text-base text-blue-400"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Hero Right Column: CSD Metrics Bento Card with 3D Tilt -->
+        <div class="lg:col-span-4 tilt-card-wrapper">
+          <div class="tilt-card spotlight-card p-6 sm:p-7 space-y-5 border border-slate-800 relative scanline-effect">
+            
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800/80">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+                  <i class="fas fa-code-branch text-base"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-white text-sm font-display">CSD Engineering Profile</h3>
+                  <p class="text-[11px] font-mono text-slate-400">AGM College of Engg & Tech</p>
+                </div>
+              </div>
+              <span class="hud-tag px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Verified</span>
+            </div>
+
+            <!-- Bento 4-Box Metric -->
+            <div class="grid grid-cols-2 gap-3 font-mono">
+              <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
+                <div class="text-2xl font-black text-indigo-400">8.0</div>
+                <div class="text-[11px] text-slate-400 mt-0.5">BE CGPA (/10)</div>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
+                <div class="text-2xl font-black text-amber-400">2</div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Hackathon Wins</div>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
+                <div class="text-2xl font-black text-emerald-400">4</div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Core Projects</div>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
+                <div class="text-2xl font-black text-cyan-400">3</div>
+                <div class="text-[11px] text-slate-400 mt-0.5">IBM Certifications</div>
+              </div>
+            </div>
+
+            <!-- Copy Contact Quick Buttons -->
+            <div class="space-y-2 pt-2">
+              <button onclick="copyText('kchandu12212004@gmail.com', 'Email Address')" class="w-full py-2 px-3 rounded-lg bg-slate-900/80 hover:bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300 flex items-center justify-between transition-colors">
+                <span class="truncate"><i class="far fa-envelope mr-2 text-indigo-400"></i>kchandu12212004@gmail.com</span>
+                <i class="far fa-copy text-slate-400"></i>
+              </button>
+              <button onclick="copyText('+91 9353799298', 'Phone Number')" class="w-full py-2 px-3 rounded-lg bg-slate-900/80 hover:bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300 flex items-center justify-between transition-colors">
+                <span><i class="fas fa-phone mr-2 text-emerald-400"></i>+91 9353799298</span>
+                <i class="far fa-copy text-slate-400"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== CSD MATRIX (COMPUTER SCIENCE × DESIGN) ==================== -->
+    <section id="csd-matrix" class="space-y-6 scroll-mt-20">
+      <div class="border-b border-slate-800/80 pb-4">
+        <div class="flex items-center gap-2 text-xs font-mono text-indigo-400 uppercase tracking-wider">
+          <i class="fas fa-cubes"></i> Engineering Discipline
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display mt-1">
+          The Computer Science × Design (CSD) Synergy
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+          How my degree equips me to merge deep algorithmic intelligence with human-centered system design
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Computer Science Pillar -->
+        <div class="tilt-card spotlight-card p-6 sm:p-7 border border-indigo-500/30 bg-gradient-to-br from-indigo-950/20 via-transparent to-transparent space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-lg">
+              <i class="fas fa-microchip"></i>
+            </div>
+            <div>
+              <span class="hud-tag text-indigo-400">Pillar I</span>
+              <h3 class="text-lg font-bold text-white font-display">Computer Science Rigor</h3>
+            </div>
+          </div>
+
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Hands-on machine learning architectures (LSTM, ARIMA, XGBoost), deep neural models with PyTorch & MobileNetV3-Small, semantic search with pgvector, and resilient REST microservices using Python, Flask, FastAPI, and Node.js.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[11px]">
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-indigo-300 border border-slate-800">PyTorch</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-indigo-300 border border-slate-800">Time-Series (LSTM / ARIMA)</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-indigo-300 border border-slate-800">FastAPI & Flask</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-indigo-300 border border-slate-800">pgvector RAG</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-indigo-300 border border-slate-800">MongoDB / SQLite</span>
+          </div>
+        </div>
+
+        <!-- Design Pillar -->
+        <div class="tilt-card spotlight-card p-6 sm:p-7 border border-emerald-500/30 bg-gradient-to-br from-emerald-950/20 via-transparent to-transparent space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg">
+              <i class="fas fa-palette"></i>
+            </div>
+            <div>
+              <span class="hud-tag text-emerald-400">Pillar II</span>
+              <h3 class="text-lg font-bold text-white font-display">Human-Centered Design & UX</h3>
+            </div>
+          </div>
+
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Translating complex AI inferences into user-comprehensible interfaces: Grad-CAM visual heatmaps for agricultural disease verification, Whisper-powered multilingual voice assistance (English, Hindi, Kannada, Marathi), and reactive React/Framer dashboards.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[11px]">
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-emerald-300 border border-slate-800">Grad-CAM Explainability</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-emerald-300 border border-slate-800">Voice AI & Accessibility</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-emerald-300 border border-slate-800">React & Framer Motion</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-emerald-300 border border-slate-800">Chart.js Analytics</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-emerald-300 border border-slate-800">Kitchen & Delivery UX</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== INTERACTIVE SIMULATION STUDIO ==================== -->
+    <section id="studio" class="space-y-6 scroll-mt-20">
+      <div class="border-b border-slate-800/80 pb-4 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">
+            <i class="fas fa-flask"></i> Interactive Engineering Workbench
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display mt-0.5">
+            CSD Simulation Studio
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-0.5">
+            Experience interactive simulations of the 4 core systems built by K Chandana
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2 p-1.5 rounded-xl bg-slate-900 border border-slate-800 font-mono text-xs">
+          <button class="studio-tab-btn px-3 py-1.5 rounded-lg active transition-all font-semibold" data-tab="studio-arecanut">
+            <i class="fas fa-seedling mr-1"></i> ARECANUT AI
+          </button>
+          <button class="studio-tab-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all font-semibold" data-tab="studio-sarkari">
+            <i class="fas fa-robot mr-1"></i> Sarkari Sahayak
+          </button>
+          <button class="studio-tab-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all font-semibold" data-tab="studio-medico">
+            <i class="fas fa-chart-line mr-1"></i> Medico AI
+          </button>
+          <button class="studio-tab-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all font-semibold" data-tab="studio-icecream">
+            <i class="fas fa-ice-cream mr-1"></i> Ice Cream Platform
+          </button>
+        </div>
+      </div>
+
+      <div class="spotlight-card p-6 sm:p-8 border border-slate-800">
+        
+        <!-- PANEL 1: ARECANUT AI SIMULATOR -->
+        <div id="studio-arecanut" class="studio-panel space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
+            <div>
+              <span class="hud-tag text-emerald-400">Simulation 01</span>
+              <h3 class="text-lg font-bold text-white font-display">ARECANUT AI : 9-Class Vision & Grad-CAM Diagnostician</h3>
+              <p class="text-xs text-slate-400">PyTorch + MobileNetV3-Small + Grad-CAM Explainability</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-xs font-mono text-slate-300 border border-slate-800">
+                <i class="fas fa-cloud-sun text-amber-400 mr-1"></i> Koppal Field: 28°C / 78% RH
+              </span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            
+            <div class="lg:col-span-5 relative rounded-2xl bg-slate-900 border border-slate-800 h-64 overflow-hidden flex items-center justify-center group">
+              <div class="absolute inset-0 bg-gradient-to-tr from-emerald-950/40 via-slate-900 to-slate-950 flex items-center justify-center">
+                <i class="fas fa-leaf text-8xl text-emerald-800/40"></i>
+              </div>
+
+              <div id="areca-heatmap" class="absolute inset-0 gradcam-heatmap rounded-2xl"></div>
+
+              <div class="relative z-10 text-center space-y-1">
+                <span class="px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-slate-950/80 text-white border border-slate-700 backdrop-blur-md">
+                  Inference Confidence: <span id="areca-confidence" class="text-emerald-400">98.7%</span>
+                </span>
+                <p class="text-[11px] font-mono text-slate-400">9-Class CNN Activation Map</p>
+              </div>
+
+              <div class="absolute bottom-3 left-3 z-10 text-[10px] font-mono text-slate-400 bg-slate-950/80 px-2 py-0.5 rounded border border-slate-800">
+                Grad-CAM Activation: Region of Interest
+              </div>
+            </div>
+
+            <div class="lg:col-span-7 space-y-4">
+              <div>
+                <label class="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1.5">
+                  Select Disease Class to Diagnose:
+                </label>
+                <select id="areca-disease-select" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs font-mono focus:border-indigo-500 focus:outline-none">
+                  <option value="kole_roga">Kole Roga (Fruit Rot) - Fungal</option>
+                  <option value="yellow_leaf">Yellow Leaf Disease - Physiological</option>
+                  <option value="anabe_roga">Anabe Roga (Foot Rot) - Ganoderma</option>
+                  <option value="healthy">Healthy Arecanut Palm</option>
+                </select>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+                <div class="text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-semibold flex items-center gap-1.5">
+                  <i class="fas fa-stethoscope"></i> Agronomic Advisory (Voice Guidance Support)
+                </div>
+                <p id="areca-advisory" class="text-xs text-slate-200 leading-relaxed font-mono">
+                  Fungicidal spray recommended: 1% Bordeaux mixture within 48h.
+                </p>
+              </div>
+
+              <div class="flex flex-wrap gap-2.5 pt-1">
+                <button id="areca-toggle-heatmap" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono transition-colors">
+                  <i class="fas fa-eye-slash mr-1"></i> Hide Grad-CAM Overlay
+                </button>
+                <button id="areca-voice-btn" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-mono font-semibold transition-all hover:scale-105 inline-flex items-center gap-1.5">
+                  <i class="fas fa-volume-up"></i> Play Voice Guidance (TTS)
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PANEL 2: SARKARI SAHAYAK BOT SIMULATOR -->
+        <div id="studio-sarkari" class="studio-panel hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
+            <div>
+              <span class="hud-tag text-amber-400">Simulation 02</span>
+              <h3 class="text-lg font-bold text-white font-display">Sarkari Sahayak Bot : Multilingual RAG & pgvector Pipeline</h3>
+              <p class="text-xs text-slate-400">LangChain + pgvector + Whisper STT + pypdf Parsing (VSM Hackathon Winner)</p>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-amber-500/10 text-xs font-mono text-amber-400 border border-amber-500/20">
+              🏆 1st Place Winner
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-5 space-y-4">
+              <div>
+                <label class="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1.5">
+                  Select Citizen Query / Government Scheme:
+                </label>
+                <select id="sarkari-scheme-query" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs font-mono focus:border-amber-500 focus:outline-none">
+                  <option value="pm_kisan">PM-Kisan Samman Nidhi Scheme</option>
+                  <option value="karnataka_raitha">Karnataka Raitha Siri Scheme (Millets)</option>
+                  <option value="vidyasiri">Vidyasiri Student Hostel Assistance</option>
+                </select>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-mono text-slate-400">Voice Language:</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-amber-300 text-[11px] font-mono border border-slate-800">English</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-amber-300 text-[11px] font-mono border border-slate-800">ಕನ್ನಡ</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-amber-300 text-[11px] font-mono border border-slate-800">हिंदी</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-amber-300 text-[11px] font-mono border border-slate-800">मराठी</span>
+              </div>
+
+              <button id="sarkari-run-rag" class="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-mono font-bold tracking-wide transition-all shadow-lg shadow-amber-600/20">
+                <i class="fas fa-search-nodes mr-1.5"></i> Run pgvector Semantic Search
+              </button>
+            </div>
+
+            <div class="lg:col-span-7 space-y-3">
+              <div id="sarkari-rag-log" class="p-3 rounded-xl bg-slate-950 border border-slate-800 min-h-[70px]">
+                <div class="text-slate-500 font-mono text-[11px]">Click 'Run pgvector Semantic Search' to trace RAG vector embeddings pipeline...</div>
+              </div>
+
+              <div id="sarkari-response-box" class="p-4 rounded-xl bg-slate-900/90 border border-amber-500/20 min-h-[95px] flex items-center">
+                <span class="text-xs font-mono text-slate-400">RAG response will appear here with citizen eligibility assistance.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 3: MEDICO AI FORECASTER SIMULATOR -->
+        <div id="studio-medico" class="studio-panel hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
+            <div>
+              <span class="hud-tag text-blue-400">Simulation 03</span>
+              <h3 class="text-lg font-bold text-white font-display">Medico AI : Time-Series Drug Demand Forecaster</h3>
+              <p class="text-xs text-slate-400">LSTM + ARIMA + XGBoost Hybrid Forecasting Model (REC Hulkoti 2nd Runner-Up)</p>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-blue-500/10 text-xs font-mono text-blue-400 border border-blue-500/20">
+              🥈 2nd Runner-Up
+            </span>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-slate-900/80 border border-slate-800 font-mono text-xs">
+              <div class="flex items-center gap-3">
+                <span class="text-slate-400">Forecast Horizon:</span>
+                <span id="medico-horizon-val" class="text-indigo-400 font-bold">3 Months</span>
+              </div>
+              <input type="range" id="medico-horizon-slider" min="1" max="6" value="3" class="w-full sm:w-64 accent-indigo-500">
+              <div class="flex items-center gap-3 text-[11px]">
+                <span class="flex items-center gap-1.5 text-blue-400"><span class="w-2.5 h-1 bg-blue-400 rounded"></span> Actual Demand</span>
+                <span class="flex items-center gap-1.5 text-indigo-400"><span class="w-2.5 h-1 bg-indigo-400 rounded"></span> ML Prediction (LSTM/ARIMA)</span>
+              </div>
+            </div>
+
+            <div class="rounded-xl bg-slate-950 p-4 border border-slate-800">
+              <canvas id="medico-chart" class="w-full h-48"></canvas>
+            </div>
+
+            <div class="text-[11px] font-mono text-slate-400 bg-slate-900 p-2.5 rounded-lg border border-slate-800 overflow-x-auto whitespace-nowrap">
+              <strong class="text-blue-400">Model Pipeline:</strong> Historical Data → Preprocessing → Feature Engineering → ML Forecasting → Demand Prediction
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 4: ICE CREAM PARADISE SIMULATOR -->
+        <div id="studio-icecream" class="studio-panel hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
+            <div>
+              <span class="hud-tag text-pink-400">Simulation 04</span>
+              <h3 class="text-lg font-bold text-white font-display">Ice Cream Paradise : Production Ordering & KDS Simulator</h3>
+              <p class="text-xs text-slate-400">FastAPI Microservices + MongoDB + Razorpay + Kitchen Dashboard Operations</p>
+            </div>
+            <a href="https://icecreamparadise.com/" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-pink-500/10 text-xs font-mono text-pink-400 border border-pink-500/20 hover:bg-pink-500/20 transition-colors">
+              <i class="fas fa-external-link-alt mr-1"></i> Visit Live: icecreamparadise.com
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-6 space-y-3">
+              <div class="text-xs font-mono uppercase tracking-wider text-slate-400">Select Flavours to Add to Cart (26 Flavours Available):</div>
+              <div class="grid grid-cols-2 gap-2 font-mono text-xs">
+                <button onclick="addIceCreamItem('Alphonso Mango Delight', 120)" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-left transition-colors">
+                  <div class="text-amber-400 font-bold">Alphonso Mango</div>
+                  <div class="text-slate-400 text-[11px]">₹120 • 100% Alphonso</div>
+                </button>
+                <button onclick="addIceCreamItem('Belgian Dark Chocolate', 160)" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-left transition-colors">
+                  <div class="text-pink-400 font-bold">Belgian Chocolate</div>
+                  <div class="text-slate-400 text-[11px]">₹160 • Rich Ganache</div>
+                </button>
+                <button onclick="addIceCreamItem('Pistachio Royal Crunch', 150)" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-left transition-colors">
+                  <div class="text-emerald-400 font-bold">Pistachio Royal</div>
+                  <div class="text-slate-400 text-[11px]">₹150 • Roasted Nuts</div>
+                </button>
+                <button onclick="addIceCreamItem('Wild Berry Sundae', 140)" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-left transition-colors">
+                  <div class="text-purple-400 font-bold">Wild Berry Sundae</div>
+                  <div class="text-slate-400 text-[11px]">₹140 • Fresh Puree</div>
+                </button>
+              </div>
+            </div>
+
+            <div class="lg:col-span-6 space-y-3 font-mono text-xs">
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-3">
+                <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                  <span class="text-slate-400">Persistent Cart Balance:</span>
+                  <span id="icecream-cart-total" class="text-lg font-bold text-white">₹0</span>
+                </div>
+                <button id="icecream-checkout-btn" class="w-full py-2.5 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold transition-all shadow-lg shadow-pink-600/20">
+                  <i class="fas fa-credit-card mr-1"></i> Simulate Razorpay Instant Checkout
+                </button>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                <div class="text-[10px] uppercase tracking-wider text-slate-500">Kitchen Operations & Delivery Portal Stream:</div>
+                <div id="icecream-order-status" class="text-slate-400 text-xs">
+                  Ready for customer ordering. Role-Based authentication active.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== EXECUTIVE SUMMARY CARDS ==================== -->
+    <section id="about" class="space-y-6 scroll-mt-20">
+      <div class="border-b border-slate-800/80 pb-4">
+        <div class="flex items-center gap-2 text-xs font-mono text-indigo-400 uppercase tracking-wider">
+          <i class="fas fa-user-check"></i> Resume Direct Extract
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display mt-1">
+          Executive Summary & Core Competencies
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">The 5 core executive pillars stated in my resume</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <!-- Point 1 -->
+        <div class="tilt-card spotlight-card p-5 sm:p-6 border border-slate-800 space-y-3">
+          <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-mono text-xs font-bold">01</div>
+          <h3 class="text-sm font-bold text-white font-display">End-to-End AI/ML Engineering</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Highly motivated 4th-year Computer Science and Design student with hands-on experience building, training, and deploying end-to-end AI/ML models and predictive analytics.
+          </p>
+        </div>
+
+        <!-- Point 2 -->
+        <div class="tilt-card spotlight-card p-5 sm:p-6 border border-slate-800 space-y-3">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-mono text-xs font-bold">02</div>
+          <h3 class="text-sm font-bold text-white font-display">Backend Services & REST APIs</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Skilled in Python backend services and REST API development with production framework architectures (Flask, FastAPI, Node.js).
+          </p>
+        </div>
+
+        <!-- Point 3 -->
+        <div class="tilt-card spotlight-card p-5 sm:p-6 border border-slate-800 space-y-3">
+          <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-mono text-xs font-bold">03</div>
+          <h3 class="text-sm font-bold text-white font-display">Predictive & Time-Series Systems</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Experience in developing predictive systems using machine learning and time-series techniques (LSTM, ARIMA, XGBoost, Prophet).
+          </p>
+        </div>
+
+        <!-- Point 4 -->
+        <div class="tilt-card spotlight-card p-5 sm:p-6 border border-slate-800 space-y-3 md:col-span-2">
+          <div class="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center font-mono text-xs font-bold">04</div>
+          <h3 class="text-sm font-bold text-white font-display">NLP & Unstructured Document Parsing</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Developed NLP and text-embedding based applications for processing unstructured document structures with LangChain, pgvector semantic search, and Whisper voice interaction.
+          </p>
+        </div>
+
+        <!-- Point 5 -->
+        <div class="tilt-card spotlight-card p-5 sm:p-6 border border-amber-500/30 bg-amber-500/5 space-y-3">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-mono text-xs font-bold">05</div>
+          <h3 class="text-sm font-bold text-white font-display">Proven Hackathon Winner</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Proven hackathon winner with strong problem-solving skills and commitment to contributing full-time.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== PROFESSIONAL STRENGTHS (SKILLS) ==================== -->
+    <section id="skills" class="space-y-8 scroll-mt-20">
+      <div class="border-b border-slate-800/80 pb-4 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 text-xs font-mono text-indigo-400 uppercase tracking-wider">
+            <i class="fas fa-layer-group"></i> Technical Inventory
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display mt-0.5">
+            Professional Strengths & Toolchains
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-0.5">Exact 8 categories and toolsets extracted from resume</p>
+        </div>
+
+        <!-- Live Skill Search Bar -->
+        <div class="relative w-full sm:w-72">
+          <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+          <input type="text" id="skill-search-input" placeholder="Filter skills (e.g. python, lstm, react)..." class="w-full pl-9 pr-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 text-xs font-mono focus:border-indigo-500 focus:outline-none">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="skills-grid-container">
+        
+        <!-- CARD 1: Machine Learning & Forecasting -->
+        <div class="tilt-card spotlight-card p-6 sm:p-7 border border-slate-800 bg-[#0b101d]/90 rounded-3xl space-y-5 shadow-xl transition-all skill-category-card">
+          <div class="flex items-center gap-3.5 border-b border-slate-800/80 pb-4">
+            <div class="w-11 h-11 rounded-2xl bg-blue-600/20 text-blue-400 border border-blue-500/30 flex items-center justify-center text-xl shadow-lg shadow-blue-500/20 flex-shrink-0">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base font-display">Machine Learning & Forecasting</h3>
+              <span class="text-xs font-mono text-slate-500">8 competencies</span>
+            </div>
+          </div>
+
+          <div class="space-y-3.5">
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Time-Series Forecasting</span>
+                <span class="font-mono font-semibold text-blue-400 text-[11px]">92%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 shadow-[0_0_8px_rgba(59,130,246,0.6)]" style="width: 92%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">MobileNetV3-Small (Deep Learning)</span>
+                <span class="font-mono font-semibold text-blue-400 text-[11px]">94%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 shadow-[0_0_8px_rgba(59,130,246,0.6)]" style="width: 94%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">PyTorch Neural Architectures</span>
+                <span class="font-mono font-semibold text-blue-400 text-[11px]">91%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 shadow-[0_0_8px_rgba(59,130,246,0.6)]" style="width: 91%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Grad-CAM (Explainable AI)</span>
+                <span class="font-mono font-semibold text-blue-400 text-[11px]">90%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 shadow-[0_0_8px_rgba(59,130,246,0.6)]" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">LSTM (Long Short-Term Memory)</span>
+                <span class="font-mono font-semibold text-blue-400 text-[11px]">88%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 shadow-[0_0_8px_rgba(59,130,246,0.6)]" style="width: 88%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">XGBoost & Random Forest</span>
+                <span class="font-mono font-semibold text-blue-400 text-[11px]">90%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 shadow-[0_0_8px_rgba(59,130,246,0.6)]" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">ARIMA & SARIMAX Statistical Models</span>
+                <span class="font-mono font-semibold text-blue-400 text-[11px]">85%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 shadow-[0_0_8px_rgba(59,130,246,0.6)]" style="width: 85%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Scikit-learn Predictive Analytics</span>
+                <span class="font-mono font-semibold text-blue-400 text-[11px]">92%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 shadow-[0_0_8px_rgba(59,130,246,0.6)]" style="width: 92%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: Generative AI & NLP -->
+        <div class="tilt-card spotlight-card p-6 sm:p-7 border border-slate-800 bg-[#0b101d]/90 rounded-3xl space-y-5 shadow-xl transition-all skill-category-card">
+          <div class="flex items-center gap-3.5 border-b border-slate-800/80 pb-4">
+            <div class="w-11 h-11 rounded-2xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-xl shadow-lg shadow-emerald-500/20 flex-shrink-0">
+              <i class="fas fa-wand-magic-sparkles"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base font-display">Generative AI & NLP</h3>
+              <span class="text-xs font-mono text-slate-500">7 competencies</span>
+            </div>
+          </div>
+
+          <div class="space-y-3.5">
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">RAG (Retrieval Augmented Generation)</span>
+                <span class="font-mono font-semibold text-emerald-400 text-[11px]">90%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 shadow-[0_0_8px_rgba(16,185,129,0.6)]" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">LangChain Pipelines</span>
+                <span class="font-mono font-semibold text-emerald-400 text-[11px]">88%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 shadow-[0_0_8px_rgba(16,185,129,0.6)]" style="width: 88%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Text Embeddings & Vector Search</span>
+                <span class="font-mono font-semibold text-emerald-400 text-[11px]">89%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 shadow-[0_0_8px_rgba(16,185,129,0.6)]" style="width: 89%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">pgvector & Supabase Vector DB</span>
+                <span class="font-mono font-semibold text-emerald-400 text-[11px]">86%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 shadow-[0_0_8px_rgba(16,185,129,0.6)]" style="width: 86%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">OpenAI Whisper STT</span>
+                <span class="font-mono font-semibold text-emerald-400 text-[11px]">85%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 shadow-[0_0_8px_rgba(16,185,129,0.6)]" style="width: 85%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Document Parsing (pypdf)</span>
+                <span class="font-mono font-semibold text-emerald-400 text-[11px]">90%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 shadow-[0_0_8px_rgba(16,185,129,0.6)]" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Multilingual AI (Kannada, Hindi, Marathi)</span>
+                <span class="font-mono font-semibold text-emerald-400 text-[11px]">88%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 shadow-[0_0_8px_rgba(16,185,129,0.6)]" style="width: 88%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: Backend & API Engineering -->
+        <div class="tilt-card spotlight-card p-6 sm:p-7 border border-slate-800 bg-[#0b101d]/90 rounded-3xl space-y-5 shadow-xl transition-all skill-category-card">
+          <div class="flex items-center gap-3.5 border-b border-slate-800/80 pb-4">
+            <div class="w-11 h-11 rounded-2xl bg-purple-500/20 text-purple-400 border border-purple-500/30 flex items-center justify-center text-xl shadow-lg shadow-purple-500/20 flex-shrink-0">
+              <i class="fas fa-server"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base font-display">Backend & API Engineering</h3>
+              <span class="text-xs font-mono text-slate-500">7 competencies</span>
+            </div>
+          </div>
+
+          <div class="space-y-3.5">
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Python (FastAPI & Flask)</span>
+                <span class="font-mono font-semibold text-purple-400 text-[11px]">94%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" style="width: 94%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">FastAPI Microservices</span>
+                <span class="font-mono font-semibold text-purple-400 text-[11px]">92%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" style="width: 92%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Flask REST APIs</span>
+                <span class="font-mono font-semibold text-purple-400 text-[11px]">90%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">RESTful API Architecture</span>
+                <span class="font-mono font-semibold text-purple-400 text-[11px]">92%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" style="width: 92%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Node.js & Express.js</span>
+                <span class="font-mono font-semibold text-purple-400 text-[11px]">86%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" style="width: 86%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Role-Based Authentication (RBAC)</span>
+                <span class="font-mono font-semibold text-purple-400 text-[11px]">85%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" style="width: 85%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Payment Integration (Razorpay)</span>
+                <span class="font-mono font-semibold text-purple-400 text-[11px]">88%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" style="width: 88%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: Frontend & CSD Design Systems -->
+        <div class="tilt-card spotlight-card p-6 sm:p-7 border border-slate-800 bg-[#0b101d]/90 rounded-3xl space-y-5 shadow-xl transition-all skill-category-card">
+          <div class="flex items-center gap-3.5 border-b border-slate-800/80 pb-4">
+            <div class="w-11 h-11 rounded-2xl bg-orange-500/20 text-orange-400 border border-orange-500/30 flex items-center justify-center text-xl shadow-lg shadow-orange-500/20 flex-shrink-0">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base font-display">Frontend & CSD Design</h3>
+              <span class="text-xs font-mono text-slate-500">6 competencies</span>
+            </div>
+          </div>
+
+          <div class="space-y-3.5">
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">React & Vite</span>
+                <span class="font-mono font-semibold text-orange-400 text-[11px]">92%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-400 shadow-[0_0_8px_rgba(249,115,22,0.6)]" style="width: 92%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">React Native & Mobile UI</span>
+                <span class="font-mono font-semibold text-orange-400 text-[11px]">85%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-400 shadow-[0_0_8px_rgba(249,115,22,0.6)]" style="width: 85%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">JavaScript (ES6+) & TypeScript</span>
+                <span class="font-mono font-semibold text-orange-400 text-[11px]">88%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-400 shadow-[0_0_8px_rgba(249,115,22,0.6)]" style="width: 88%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Tailwind CSS & NativeWind</span>
+                <span class="font-mono font-semibold text-orange-400 text-[11px]">94%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-400 shadow-[0_0_8px_rgba(249,115,22,0.6)]" style="width: 94%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Data Visualization (Chart.js)</span>
+                <span class="font-mono font-semibold text-orange-400 text-[11px]">86%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-400 shadow-[0_0_8px_rgba(249,115,22,0.6)]" style="width: 86%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Responsive UI/UX & Design Systems</span>
+                <span class="font-mono font-semibold text-orange-400 text-[11px]">92%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-400 shadow-[0_0_8px_rgba(249,115,22,0.6)]" style="width: 92%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 5: Data Science & Databases -->
+        <div class="tilt-card spotlight-card p-6 sm:p-7 border border-slate-800 bg-[#0b101d]/90 rounded-3xl space-y-5 shadow-xl transition-all skill-category-card">
+          <div class="flex items-center gap-3.5 border-b border-slate-800/80 pb-4">
+            <div class="w-11 h-11 rounded-2xl bg-pink-500/20 text-pink-400 border border-pink-500/30 flex items-center justify-center text-xl shadow-lg shadow-pink-500/20 flex-shrink-0">
+              <i class="fas fa-database"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base font-display">Data Science & Databases</h3>
+              <span class="text-xs font-mono text-slate-500">6 competencies</span>
+            </div>
+          </div>
+
+          <div class="space-y-3.5">
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Pandas & NumPy</span>
+                <span class="font-mono font-semibold text-pink-400 text-[11px]">92%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-pink-500 to-rose-400 shadow-[0_0_8px_rgba(236,72,153,0.6)]" style="width: 92%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Exploratory Data Analysis (EDA)</span>
+                <span class="font-mono font-semibold text-pink-400 text-[11px]">90%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-pink-500 to-rose-400 shadow-[0_0_8px_rgba(236,72,153,0.6)]" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Feature Engineering & Cleaning</span>
+                <span class="font-mono font-semibold text-pink-400 text-[11px]">90%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-pink-500 to-rose-400 shadow-[0_0_8px_rgba(236,72,153,0.6)]" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">MongoDB (NoSQL Document DB)</span>
+                <span class="font-mono font-semibold text-pink-400 text-[11px]">88%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-pink-500 to-rose-400 shadow-[0_0_8px_rgba(236,72,153,0.6)]" style="width: 88%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Firebase Firestore Cloud DB</span>
+                <span class="font-mono font-semibold text-pink-400 text-[11px]">86%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-pink-500 to-rose-400 shadow-[0_0_8px_rgba(236,72,153,0.6)]" style="width: 86%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">SQLite & MySQL Relational DB</span>
+                <span class="font-mono font-semibold text-pink-400 text-[11px]">85%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-pink-500 to-rose-400 shadow-[0_0_8px_rgba(236,72,153,0.6)]" style="width: 85%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 6: Tools & Engineering Foundations -->
+        <div class="tilt-card spotlight-card p-6 sm:p-7 border border-slate-800 bg-[#0b101d]/90 rounded-3xl space-y-5 shadow-xl transition-all skill-category-card">
+          <div class="flex items-center gap-3.5 border-b border-slate-800/80 pb-4">
+            <div class="w-11 h-11 rounded-2xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-xl shadow-lg shadow-cyan-500/20 flex-shrink-0">
+              <i class="fas fa-wrench"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base font-display">Tools & DevOps</h3>
+              <span class="text-xs font-mono text-slate-500">5 competencies</span>
+            </div>
+          </div>
+
+          <div class="space-y-3.5">
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Git & GitHub Version Control</span>
+                <span class="font-mono font-semibold text-cyan-400 text-[11px]">90%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-cyan-500 to-sky-400 shadow-[0_0_8px_rgba(6,182,212,0.6)]" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">VS Code & Debugging</span>
+                <span class="font-mono font-semibold text-cyan-400 text-[11px]">94%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-cyan-500 to-sky-400 shadow-[0_0_8px_rgba(6,182,212,0.6)]" style="width: 94%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Postman API Testing</span>
+                <span class="font-mono font-semibold text-cyan-400 text-[11px]">88%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-cyan-500 to-sky-400 shadow-[0_0_8px_rgba(6,182,212,0.6)]" style="width: 88%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">Netlify & Render Deployments</span>
+                <span class="font-mono font-semibold text-cyan-400 text-[11px]">88%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-cyan-500 to-sky-400 shadow-[0_0_8px_rgba(6,182,212,0.6)]" style="width: 88%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item space-y-1">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-medium text-slate-200">C Programming (CS Foundations)</span>
+                <span class="font-mono font-semibold text-cyan-400 text-[11px]">80%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-cyan-500 to-sky-400 shadow-[0_0_8px_rgba(6,182,212,0.6)]" style="width: 80%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== ENGINEERING PROJECTS & PIPELINES ==================== -->
+    <section id="projects" class="space-y-8 scroll-mt-20">
+      <div class="border-b border-slate-800/80 pb-4 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 text-xs font-mono text-indigo-400 uppercase tracking-wider">
+            <i class="fas fa-diagram-project"></i> Core Architectural Work
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display mt-0.5">
+            Engineering Systems & Projects
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-0.5">Detailed breakdown of the 4 engineering projects from resume</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap items-center gap-2 p-1 rounded-xl bg-slate-900 border border-slate-800 font-mono text-xs">
+          <button class="project-filter-btn px-3 py-1.5 rounded-lg active bg-indigo-600 text-white border border-indigo-500 transition-colors" data-filter="all">All (4)</button>
+          <button class="project-filter-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white bg-slate-900/60 border border-slate-800 transition-colors" data-filter="ai">AI / ML (2)</button>
+          <button class="project-filter-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white bg-slate-900/60 border border-slate-800 transition-colors" data-filter="nlp">NLP & RAG (1)</button>
+          <button class="project-filter-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white bg-slate-900/60 border border-slate-800 transition-colors" data-filter="fullstack">Full-Stack (1)</button>
+        </div>
+      </div>
+
+      <!-- ==================== INTERACTIVE MULTI-DEVICE APPLICATION VIEWPORT ==================== -->
+      <div class="tilt-card spotlight-card border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/80 shadow-2xl space-y-0">
+        
+        <!-- Viewport Top Toolbar / Chrome -->
+        <div class="px-4 py-3 bg-slate-900 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 select-none">
+          
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+            <span class="text-xs font-mono text-slate-400 font-semibold ml-2 hidden sm:inline">
+              <i class="fas fa-desktop text-indigo-400 mr-1.5"></i> CSD Interactive Responsive Viewport
+            </span>
+          </div>
+
+          <!-- Project Viewport Tabs -->
+          <div class="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs">
+            <button onclick="switchDeviceProject('icecream')" id="dev-tab-icecream" class="dev-proj-tab px-3 py-1 rounded-lg bg-pink-600 text-white font-semibold transition-all">
+              <i class="fas fa-ice-cream mr-1"></i> Ice Cream Paradise
+            </button>
+            <button onclick="switchDeviceProject('arecanut')" id="dev-tab-arecanut" class="dev-proj-tab px-3 py-1 rounded-lg text-slate-400 hover:text-white transition-all">
+              <i class="fas fa-leaf mr-1"></i> Arecanut AI
+            </button>
+            <button onclick="switchDeviceProject('sarkari')" id="dev-tab-sarkari" class="dev-proj-tab px-3 py-1 rounded-lg text-slate-400 hover:text-white transition-all">
+              <i class="fas fa-landmark mr-1"></i> Sarkari Sahayak
+            </button>
+            <button onclick="switchDeviceProject('medico')" id="dev-tab-medico" class="dev-proj-tab px-3 py-1 rounded-lg text-slate-400 hover:text-white transition-all">
+              <i class="fas fa-prescription-bottle-medical mr-1"></i> Medico AI
+            </button>
+          </div>
+
+          <!-- Viewport Mode Switcher: Desktop vs Mobile -->
+          <div class="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs font-mono">
+            <button onclick="setDeviceView('desktop')" id="dev-btn-desktop" class="px-2.5 py-1 rounded-lg bg-indigo-600 text-white transition-colors" title="Desktop Viewport">
+              <i class="fas fa-desktop mr-1"></i> Desktop
+            </button>
+            <button onclick="setDeviceView('mobile')" id="dev-btn-mobile" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition-colors" title="Mobile Viewport">
+              <i class="fas fa-mobile-screen mr-1"></i> Mobile (380px)
+            </button>
+          </div>
+
+        </div>
+
+        <!-- URL / Status Breadcrumb -->
+        <div class="px-4 py-1.5 bg-slate-950 border-b border-slate-800/80 flex items-center justify-between text-[11px] font-mono text-slate-400">
+          <div class="flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap">
+            <i class="fas fa-lock text-emerald-400 text-[10px]"></i>
+            <span id="dev-frame-url" class="text-cyan-300">https://icecreamparadise.com/catalog/menu</span>
+          </div>
+          <span id="dev-frame-badge" class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-[10px] border border-emerald-500/20">
+            LIVE SANDBOX ACTIVE
+          </span>
+        </div>
+
+        <!-- Viewport Canvas Container -->
+        <div class="p-4 sm:p-8 bg-[#050811] flex items-center justify-center min-h-[440px] overflow-hidden">
+          
+          <div id="device-screen-wrapper" class="device-viewport view-desktop w-full mx-auto transition-all duration-300">
+            
+            <!-- Dynamic Simulated App Screen -->
+            <div id="device-app-canvas" class="rounded-xl border border-slate-800 bg-slate-900/90 p-4 sm:p-6 shadow-2xl">
+              
+              <!-- CONTENT INJECTED BY JAVASCRIPT: switchDeviceProject() -->
+              <!-- Default: Ice Cream Paradise Store Preview -->
+              <div class="space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                  <div class="flex items-center gap-2">
+                    <span class="text-xl">🍦</span>
+                    <span class="font-bold text-white font-display text-base sm:text-lg">Ice Cream Paradise</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-pink-500/20 text-pink-300 font-mono">React + FastAPI + Razorpay</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-xs font-mono">
+                    <span class="text-slate-400">Cart:</span>
+                    <span id="dev-cart-count" class="px-2 py-0.5 rounded-full bg-pink-600 text-white font-bold">2 items</span>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+                    <div class="text-xs font-bold text-white">Belgian Chocolate</div>
+                    <div class="text-[11px] text-slate-400">Rich 70% cocoa indulgence</div>
+                    <div class="flex items-center justify-between pt-1">
+                      <span class="text-pink-400 font-bold font-mono text-xs">₹140</span>
+                      <button onclick="addDevCartItem('Belgian Chocolate', 140)" class="px-2.5 py-1 rounded bg-pink-600 hover:bg-pink-500 text-white text-[11px] font-mono transition-colors">+ Add</button>
+                    </div>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+                    <div class="text-xs font-bold text-white">Royal Alphonso Mango</div>
+                    <div class="text-[11px] text-slate-400">Fresh Ratnagiri mango pulp</div>
+                    <div class="flex items-center justify-between pt-1">
+                      <span class="text-pink-400 font-bold font-mono text-xs">₹160</span>
+                      <button onclick="addDevCartItem('Alphonso Mango', 160)" class="px-2.5 py-1 rounded bg-pink-600 hover:bg-pink-500 text-white text-[11px] font-mono transition-colors">+ Add</button>
+                    </div>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+                    <div class="text-xs font-bold text-white">Kesar Pista Supreme</div>
+                    <div class="text-[11px] text-slate-400">Saffron cream & roasted pista</div>
+                    <div class="flex items-center justify-between pt-1">
+                      <span class="text-pink-400 font-bold font-mono text-xs">₹180</span>
+                      <button onclick="addDevCartItem('Kesar Pista', 180)" class="px-2.5 py-1 rounded bg-pink-600 hover:bg-pink-500 text-white text-[11px] font-mono transition-colors">+ Add</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Order Tally & Razorpay Simulated Trigger -->
+                <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+                  <div>
+                    <span class="text-slate-400">Order Total: </span>
+                    <span id="dev-cart-total" class="text-emerald-400 font-bold text-sm">₹300</span>
+                    <span class="text-slate-500 text-[10px] ml-1">(Incl. 5% GST)</span>
+                  </div>
+                  <button onclick="triggerDevRazorpay()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition-all shadow-md shadow-emerald-600/30 flex items-center gap-2">
+                    <i class="fas fa-shield-alt text-xs"></i>
+                    <span>Simulate Razorpay Payment</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
+        
+        <!-- PROJECT 1: ARECANUT AI -->
+        <div class="project-card tilt-card spotlight-card p-6 sm:p-7 border border-slate-800 hover:border-emerald-500/40 transition-all flex flex-col justify-between group space-y-5" data-category="ai">
+          <div class="space-y-4">
+            
+            <div class="flex items-center justify-between gap-2">
+              <span class="hud-tag px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                AI / Computer Vision
+              </span>
+              <span class="text-[11px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
+                Web Application
+              </span>
+            </div>
+
+            <div class="space-y-1.5">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-emerald-400 transition-colors font-display">
+                ARECANUT AI : AI-Powered Arecanut Disease Detection System
+              </h3>
+              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                Provides 9-class arecanut disease detection with confidence-aware predictions, image-quality checking, Grad-CAM explainability, weather intelligence, field monitoring, disease information, farm observation history, multilingual support, and voice-assisted guidance.
+              </p>
+            </div>
+
+            <!-- Flowchart Node Graphic -->
+            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 font-mono text-[11px] space-y-1.5">
+              <div class="text-slate-500 uppercase tracking-wider text-[10px]">Diagnosis Pipeline:</div>
+              <div class="text-emerald-300 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap">
+                <span>Leaf Image</span>
+                <i class="fas fa-arrow-right text-[10px] text-slate-600"></i>
+                <span>OpenCV Quality Check</span>
+                <i class="fas fa-arrow-right text-[10px] text-slate-600"></i>
+                <span>MobileNetV3 (9-Class)</span>
+                <i class="fas fa-arrow-right text-[10px] text-slate-600"></i>
+                <span>Grad-CAM Explainability</span>
+              </div>
+            </div>
+
+            <!-- Tech Pills from Resume -->
+            <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">React</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Tailwind CSS</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Flask</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">PyTorch</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">MobileNetV3-Small</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Grad-CAM</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">OpenCV</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">SQLite/Firebase</span>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <button onclick="openProjectModal('arecanut')" class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-emerald-400 hover:text-emerald-300">
+              <i class="fas fa-sliders-h"></i>
+              <span>System Specs & Architecture</span>
+            </button>
+            <a href="https://github.com/chandana-agm" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-slate-400 hover:text-white flex items-center gap-1.5">
+              <i class="fab fa-github"></i> Source
+            </a>
+          </div>
+        </div>
+
+        <!-- PROJECT 2: SARKARI SAHAYAK BOT -->
+        <div class="project-card tilt-card spotlight-card p-6 sm:p-7 border border-amber-500/30 hover:border-amber-400 transition-all flex flex-col justify-between group space-y-5" data-category="nlp">
+          <div class="space-y-4">
+            
+            <div class="flex items-center justify-between gap-2">
+              <span class="hud-tag px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+                <i class="fas fa-trophy"></i> 1st Place - VSM Nippani Hackathon
+              </span>
+              <span class="text-[11px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
+                Full-Stack Web App
+              </span>
+            </div>
+
+            <div class="space-y-1.5">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-amber-400 transition-colors font-display">
+                Sarkari Sahayak Bot : Advanced NLP Prototype
+              </h3>
+              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                Government Scheme Search, PDF-Based Knowledge Retrieval, Eligibility Assistance, Multilingual AI, Voice Assistant, Context-Aware Responses, Scheme Recommendations across English, Hindi, Kannada, and Marathi.
+              </p>
+            </div>
+
+            <!-- Flowchart Node Graphic -->
+            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 font-mono text-[11px] space-y-1.5">
+              <div class="text-slate-500 uppercase tracking-wider text-[10px]">RAG & Voice Pipeline:</div>
+              <div class="text-amber-300 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap">
+                <span>Whisper STT (4 Langs)</span>
+                <i class="fas fa-arrow-right text-[10px] text-slate-600"></i>
+                <span>pypdf Parsing</span>
+                <i class="fas fa-arrow-right text-[10px] text-slate-600"></i>
+                <span>pgvector Search</span>
+                <i class="fas fa-arrow-right text-[10px] text-slate-600"></i>
+                <span>LangChain RAG</span>
+              </div>
+            </div>
+
+            <!-- Tech Pills from Resume -->
+            <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">React</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Node.js</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">LangChain</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">pgvector</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Whisper</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Framer Motion</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">MongoDB</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Supabase</span>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <button onclick="openProjectModal('sarkari')" class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-amber-400 hover:text-amber-300">
+              <i class="fas fa-sliders-h"></i>
+              <span>System Specs & Architecture</span>
+            </button>
+            <a href="https://github.com/chandana-agm" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-slate-400 hover:text-white flex items-center gap-1.5">
+              <i class="fab fa-github"></i> Source
+            </a>
+          </div>
+        </div>
+
+        <!-- PROJECT 3: MEDICO AI -->
+        <div class="project-card tilt-card spotlight-card p-6 sm:p-7 border border-blue-500/30 hover:border-blue-400 transition-all flex flex-col justify-between group space-y-5" data-category="ai">
+          <div class="space-y-4">
+            
+            <div class="flex items-center justify-between gap-2">
+              <span class="hud-tag px-2.5 py-1 rounded bg-blue-500/10 text-blue-400 border border-blue-500/30 flex items-center gap-1.5">
+                <i class="fas fa-medal"></i> 2nd Runner-Up - REC Hulkoti
+              </span>
+              <span class="text-[11px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
+                Flask Full-Stack
+              </span>
+            </div>
+
+            <div class="space-y-1.5">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-blue-400 transition-colors font-display">
+                Medico AI : Drug Demand Forecasting
+              </h3>
+              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                Drug Demand Prediction, Time-Series Analysis, Inventory Forecasting, Resource Estimation, Data Visualization, Decision Support for hospitals and pharmaceuticals.
+              </p>
+            </div>
+
+            <!-- Model Pipeline from Resume -->
+            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 font-mono text-[11px] space-y-1.5">
+              <div class="text-slate-500 uppercase tracking-wider text-[10px]">Model Pipeline (From Resume):</div>
+              <div class="text-blue-300 overflow-x-auto whitespace-nowrap">
+                Historical Data → Preprocessing → Feature Engineering → ML Forecasting → Demand Prediction
+              </div>
+            </div>
+
+            <!-- Tech Pills from Resume -->
+            <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Python</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Flask</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">LSTM</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">ARIMA</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">XGBoost</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Pandas / NumPy</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Scikit-learn</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">SQLite / MySQL</span>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <button onclick="openProjectModal('medico')" class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-blue-400 hover:text-blue-300">
+              <i class="fas fa-sliders-h"></i>
+              <span>System Specs & Architecture</span>
+            </button>
+            <a href="https://github.com/chandana-agm" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-slate-400 hover:text-white flex items-center gap-1.5">
+              <i class="fab fa-github"></i> Source
+            </a>
+          </div>
+        </div>
+
+        <!-- PROJECT 4: ICE CREAM PARADISE -->
+        <div class="project-card tilt-card spotlight-card p-6 sm:p-7 border border-pink-500/30 hover:border-pink-400 transition-all flex flex-col justify-between group space-y-5" data-category="fullstack">
+          <div class="space-y-4">
+            
+            <div class="flex items-center justify-between gap-2">
+              <span class="hud-tag px-2.5 py-1 rounded bg-pink-500/10 text-pink-400 border border-pink-500/30 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-pink-400 animate-ping"></span> Live Deployment
+              </span>
+              <span class="text-[11px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
+                Netlify + Render
+              </span>
+            </div>
+
+            <div class="space-y-1.5">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-pink-400 transition-colors font-display">
+                Ice Cream Paradise – Full-Stack Food Ordering Platform
+              </h3>
+              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                100+ Menu Items, 26 Ice-Cream Flavours, Category-Based Browsing, Persistent Cart, Checkout, Online Payment, Order Tracking, Customer Feedback with dual Kitchen and Delivery Dashboards.
+              </p>
+            </div>
+
+            <!-- Operations Graphic -->
+            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 font-mono text-[11px] space-y-1.5">
+              <div class="text-slate-500 uppercase tracking-wider text-[10px]">Operations & Payment Flow:</div>
+              <div class="text-pink-300 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap">
+                <span>FastAPI Microservice</span>
+                <i class="fas fa-arrow-right text-[10px] text-slate-600"></i>
+                <span>Razorpay Gateway</span>
+                <i class="fas fa-arrow-right text-[10px] text-slate-600"></i>
+                <span>Kitchen Dashboard</span>
+                <i class="fas fa-arrow-right text-[10px] text-slate-600"></i>
+                <span>Delivery Status Tracking</span>
+              </div>
+            </div>
+
+            <!-- Tech Pills from Resume -->
+            <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[11px]">
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">React</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">FastAPI</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">MongoDB</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Razorpay</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Axios</span>
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">Role-Based Auth</span>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <button onclick="openProjectModal('icecream')" class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-pink-400 hover:text-pink-300">
+              <i class="fas fa-sliders-h"></i>
+              <span>System Specs & Architecture</span>
+            </button>
+            <a href="https://icecreamparadise.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-pink-600 hover:bg-pink-500 text-white text-xs font-mono font-medium transition-colors">
+              <i class="fas fa-external-link-alt text-[10px]"></i> Live Site
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== ACHIEVEMENTS & CERTIFICATIONS ==================== -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Achievements Section -->
+      <section id="achievements" class="lg:col-span-6 space-y-6 scroll-mt-20">
+        <div class="border-b border-slate-800/80 pb-4">
+          <div class="flex items-center gap-2 text-xs font-mono text-amber-400 uppercase tracking-wider">
+            <i class="fas fa-trophy"></i> Competitive Engineering
+          </div>
+          <h2 class="text-2xl font-bold tracking-tight text-white font-display mt-0.5">
+            Hackathon Victories
+          </h2>
+          <p class="text-slate-400 text-xs mt-0.5">Competitive hackathon wins from resume</p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- 1st Place -->
+          <div class="tilt-card spotlight-card p-5 border border-amber-500/30 bg-gradient-to-br from-amber-500/5 via-transparent to-transparent space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl shadow-lg shadow-amber-500/20">
+                  <i class="fas fa-trophy"></i>
+                </div>
+                <div>
+                  <span class="hud-tag px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">1st Place Winner</span>
+                  <h3 class="text-base font-bold text-white mt-1 font-display">VSM Nippani Hackathon</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between text-xs font-mono">
+              <div>
+                <span class="text-slate-500 block text-[10px]">Built System</span>
+                <span class="text-indigo-300 font-semibold">Sarkari Sahayak Bot</span>
+              </div>
+              <button onclick="openProjectModal('sarkari')" class="text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                Inspect <i class="fas fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 2nd Runner Up -->
+          <div class="tilt-card spotlight-card p-5 border border-blue-500/30 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl shadow-lg shadow-blue-500/20">
+                  <i class="fas fa-medal"></i>
+                </div>
+                <div>
+                  <span class="hud-tag px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">2nd Runner-Up</span>
+                  <h3 class="text-base font-bold text-white mt-1 font-display">REC Hulkoti National Hackathon</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between text-xs font-mono">
+              <div>
+                <span class="text-slate-500 block text-[10px]">Built System</span>
+                <span class="text-indigo-300 font-semibold">Medico AI</span>
+              </div>
+              <button onclick="openProjectModal('medico')" class="text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                Inspect <i class="fas fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications Section -->
+      <section id="certifications" class="lg:col-span-6 space-y-6 scroll-mt-20">
+        <div class="border-b border-slate-800/80 pb-4">
+          <div class="flex items-center gap-2 text-xs font-mono text-indigo-400 uppercase tracking-wider">
+            <i class="fas fa-certificate"></i> Verified Badges
+          </div>
+          <h2 class="text-2xl font-bold tracking-tight text-white font-display mt-0.5">
+            IBM SkillBuild Certifications
+          </h2>
+          <p class="text-slate-400 text-xs mt-0.5">Official IBM credentials stated in resume</p>
+        </div>
+
+        <div class="space-y-3.5">
+          <!-- Cert 1 -->
+          <div class="tilt-card spotlight-card p-4 border border-slate-800 flex items-center gap-4">
+            <div class="w-11 h-11 rounded-xl bg-indigo-600/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-lg flex-shrink-0">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="space-y-0.5">
+              <h3 class="font-bold text-white text-sm font-display">Artificial Intelligence Fundamentals</h3>
+              <p class="text-xs text-indigo-300 font-mono flex items-center gap-1.5">
+                <i class="fab fa-ibm text-sm"></i> IBM SkillBuild
+              </p>
+            </div>
+          </div>
+
+          <!-- Cert 2 -->
+          <div class="tilt-card spotlight-card p-4 border border-slate-800 flex items-center gap-4">
+            <div class="w-11 h-11 rounded-xl bg-indigo-600/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-lg flex-shrink-0">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <div class="space-y-0.5">
+              <h3 class="font-bold text-white text-sm font-display">Career Management Essentials</h3>
+              <p class="text-xs text-indigo-300 font-mono flex items-center gap-1.5">
+                <i class="fab fa-ibm text-sm"></i> IBM SkillBuild
+              </p>
+            </div>
+          </div>
+
+          <!-- Cert 3 -->
+          <div class="tilt-card spotlight-card p-4 border border-slate-800 flex items-center gap-4">
+            <div class="w-11 h-11 rounded-xl bg-indigo-600/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-lg flex-shrink-0">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <div class="space-y-0.5">
+              <h3 class="font-bold text-white text-sm font-display">Project Management Fundamentals</h3>
+              <p class="text-xs text-indigo-300 font-mono flex items-center gap-1.5">
+                <i class="fab fa-ibm text-sm"></i> IBM SkillBuild
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ==================== EDUCATION SECTION ==================== -->
+    <section id="education" class="space-y-8 scroll-mt-20">
+      <div class="border-b border-slate-800/80 pb-4">
+        <div class="flex items-center gap-2 text-xs font-mono text-indigo-400 uppercase tracking-wider">
+          <i class="fas fa-graduation-cap"></i> Academic Pathway
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display mt-0.5">
+          Educational Qualifications
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-0.5">Chronological academic records from resume</p>
+      </div>
+
+      <div class="space-y-5 relative before:absolute before:inset-0 before:left-5 sm:before:left-7 before:w-0.5 before:bg-slate-800">
+        
+        <!-- BE CSD -->
+        <div class="relative pl-12 sm:pl-16">
+          <div class="absolute left-3 sm:left-5 top-2 -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-600 border-4 border-slate-950"></div>
+          <div class="tilt-card spotlight-card p-5 sm:p-6 border border-indigo-500/30">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1.5">
+              <h3 class="text-base sm:text-lg font-bold text-white font-display">
+                BACHELOR OF ENGINEERING (Computer Science and Design)
+              </h3>
+              <span class="hud-tag px-2.5 py-1 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 w-fit">
+                CGPA: 8.0 / 10
+              </span>
+            </div>
+            <div class="text-slate-300 text-xs sm:text-sm font-medium">AGM College of Engineering & Technology</div>
+            <div class="text-xs text-slate-500 font-mono mt-1">Current Year: 4th Year</div>
+          </div>
+        </div>
+
+        <!-- PUC -->
+        <div class="relative pl-12 sm:pl-16">
+          <div class="absolute left-3 sm:left-5 top-2 -translate-x-1/2 w-4 h-4 rounded-full bg-purple-600 border-4 border-slate-950"></div>
+          <div class="tilt-card spotlight-card p-5 sm:p-6 border border-slate-800">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1.5">
+              <h3 class="text-base sm:text-lg font-bold text-white font-display">
+                PUC (Pre-University Course)
+              </h3>
+              <span class="hud-tag px-2.5 py-1 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30 w-fit">
+                76 Percentage
+              </span>
+            </div>
+            <div class="text-slate-300 text-xs sm:text-sm font-medium">Shri Sharadha Science College Kidadhal Koppal</div>
+            <div class="text-xs text-slate-500 font-mono mt-1">2022 Batch</div>
+          </div>
+        </div>
+
+        <!-- SSLC -->
+        <div class="relative pl-12 sm:pl-16">
+          <div class="absolute left-3 sm:left-5 top-2 -translate-x-1/2 w-4 h-4 rounded-full bg-emerald-600 border-4 border-slate-950"></div>
+          <div class="tilt-card spotlight-card p-5 sm:p-6 border border-slate-800">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1.5">
+              <h3 class="text-base sm:text-lg font-bold text-white font-display">
+                SSLC (Secondary School Leaving Certificate)
+              </h3>
+              <span class="hud-tag px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 w-fit">
+                89 Percentage
+              </span>
+            </div>
+            <div class="text-slate-300 text-xs sm:text-sm font-medium">Swami Vivekananda English Medium School Koppal</div>
+            <div class="text-xs text-slate-500 font-mono mt-1">2020 Batch</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT & FORMAL DECLARATION ==================== -->
+    <section id="contact" class="space-y-8 scroll-mt-20">
+      <div class="border-b border-slate-800/80 pb-4">
+        <div class="flex items-center gap-2 text-xs font-mono text-indigo-400 uppercase tracking-wider">
+          <i class="fas fa-address-book"></i> Connect
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display mt-0.5">
+          Direct Contact & Coordinates
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-0.5">Get in touch directly via phone, email, or networks</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: Quick Cards -->
+        <div class="lg:col-span-5 space-y-4">
+          
+          <!-- Email Card -->
+          <div class="tilt-card spotlight-card p-4 sm:p-5 border border-slate-800 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-indigo-600/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-base flex-shrink-0">
+                <i class="far fa-envelope"></i>
+              </div>
+              <div class="overflow-hidden">
+                <span class="hud-tag text-slate-500 block">Email Address</span>
+                <a href="mailto:kchandu12212004@gmail.com" class="text-xs sm:text-sm font-semibold text-white hover:text-indigo-400 truncate block font-mono">
+                  kchandu12212004@gmail.com
+                </a>
+              </div>
+            </div>
+            <button onclick="copyText('kchandu12212004@gmail.com', 'Email Address')" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white transition-colors flex-shrink-0" title="Copy Email">
+              <i class="far fa-copy text-xs"></i>
+            </button>
+          </div>
+
+          <!-- Phone Card -->
+          <div class="tilt-card spotlight-card p-4 sm:p-5 border border-slate-800 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-600/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-base flex-shrink-0">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div>
+                <span class="hud-tag text-slate-500 block">Phone</span>
+                <a href="tel:+919353799298" class="text-xs sm:text-sm font-semibold text-white hover:text-emerald-400 block font-mono">
+                  +91 9353799298
+                </a>
+              </div>
+            </div>
+            <button onclick="copyText('+91 9353799298', 'Phone Number')" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white transition-colors flex-shrink-0" title="Copy Phone">
+              <i class="far fa-copy text-xs"></i>
+            </button>
+          </div>
+
+          <!-- Address Card -->
+          <div class="tilt-card spotlight-card p-4 sm:p-5 border border-slate-800 flex items-start gap-3">
+            <div class="w-10 h-10 rounded-xl bg-rose-600/15 border border-rose-500/30 flex items-center justify-center text-rose-400 text-base flex-shrink-0 mt-0.5">
+              <i class="fas fa-location-dot"></i>
+            </div>
+            <div>
+              <span class="hud-tag text-slate-500 block">Address Coordinates</span>
+              <p class="text-xs sm:text-sm text-slate-200 mt-0.5 leading-relaxed font-mono">
+                Aarogya Bhadavane , Bhagyanagara cross , Koppal 583231
+              </p>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div class="grid grid-cols-2 gap-3 pt-1">
+            <a href="https://www.linkedin.com/in/k-chandana-2a945a3b8/" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-blue-500/50 flex items-center gap-3 transition-colors group">
+              <i class="fab fa-linkedin text-xl text-blue-400 group-hover:scale-110 transition-transform"></i>
+              <div>
+                <div class="text-[10px] font-mono text-slate-500">Connect</div>
+                <div class="text-xs font-bold text-white font-mono">LinkedIn</div>
+              </div>
+            </a>
+            <a href="https://github.com/chandana-agm" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-slate-600 flex items-center gap-3 transition-colors group">
+              <i class="fab fa-github text-xl text-slate-300 group-hover:scale-110 transition-transform"></i>
+              <div>
+                <div class="text-[10px] font-mono text-slate-500">Follow</div>
+                <div class="text-xs font-bold text-white font-mono">GitHub</div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right: Message Dispatcher -->
+        <div id="contact-form-card" class="lg:col-span-7 tilt-card spotlight-card p-6 sm:p-8 border border-slate-800 space-y-5">
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2 font-display">
+              <i class="fas fa-paper-plane text-indigo-400 text-sm"></i> Direct Message Gateway
+            </h3>
+            <p class="text-xs text-slate-400">Prepares an email to kchandu12212004@gmail.com directly</p>
+          </div>
+
+          <form id="contact-form" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contact-name" class="block text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">Your Name</label>
+                <input type="text" id="contact-name" required placeholder="Hiring Manager / Recruiter" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 text-xs font-mono">
+              </div>
+              <div>
+                <label for="contact-subject" class="block text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">Subject</label>
+                <input type="text" id="contact-subject" required placeholder="Role Discussion / CSD Interview" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 text-xs font-mono">
+              </div>
+            </div>
+            <div>
+              <label for="contact-message" class="block text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1">Message Content</label>
+              <textarea id="contact-message" rows="4" required placeholder="Type your message here..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 text-xs font-mono"></textarea>
+            </div>
+            <button type="submit" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-mono font-semibold text-xs tracking-wider shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 inline-flex items-center justify-center gap-2">
+              <i class="fas fa-paper-plane"></i> Dispatch Email
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Formal Declaration Strictly from Resume -->
+      <div class="tilt-card spotlight-card p-5 sm:p-6 border border-slate-800/80 space-y-2.5">
+        <div class="hud-tag text-slate-400 flex items-center gap-2">
+          <i class="fas fa-shield-halved text-indigo-400"></i> Formal Resume Declaration
+        </div>
+        <p class="text-xs sm:text-sm text-slate-400 italic leading-relaxed">
+          "I do hereby declare that all statements made in this resume are true and complete to the best of my knowledge and belief."
+        </p>
+        <div class="text-xs font-mono text-slate-300 font-semibold pt-1">
+          Yours Sincerely, <br>
+          <span class="text-indigo-400 font-bold text-sm">K Chandana</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="relative z-10 border-t border-slate-800/80 bg-slate-950/90 py-8 px-4 text-center text-xs text-slate-500 font-mono space-y-2">
+    <div class="flex items-center justify-center gap-4 text-slate-400">
+      <a href="https://github.com/chandana-agm" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors"><i class="fab fa-github"></i> GitHub</a>
+      <span>•</span>
+      <a href="https://www.linkedin.com/in/k-chandana-2a945a3b8/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <span>•</span>
+      <a href="mailto:kchandu12212004@gmail.com" class="hover:text-indigo-400 transition-colors"><i class="far fa-envelope"></i> Email</a>
+    </div>
+    <p>© 2026 K Chandana • Computer Science & Design Engineering Portfolio</p>
+  </footer>
+
+  <!-- ==================== 60-SECOND RECRUITER FAST-TRACK MODAL ==================== -->
+  <div id="recruiter-modal" class="fixed inset-0 z-50 hidden command-palette-backdrop flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="spotlight-card w-full max-w-2xl rounded-2xl bg-[#090e1a] border border-amber-500/40 p-6 sm:p-8 space-y-6 shadow-2xl relative my-auto">
+      
+      <button onclick="closeRecruiterModal()" class="absolute top-5 right-5 w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+        <i class="fas fa-times text-sm"></i>
+      </button>
+
+      <div class="space-y-1">
+        <span class="hud-tag px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+          <i class="fas fa-bolt mr-1"></i> Recruiter Fast-Track Briefing (60 Seconds)
+        </span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white font-display">Why Hire K Chandana?</h3>
+        <p class="text-xs text-slate-400 font-mono">4th-Year Computer Science and Design Student • AGM College of Engg & Tech</p>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center">
+          <div class="text-lg font-black text-indigo-400">8.0 / 10</div>
+          <div class="text-[10px] text-slate-400">BE CGPA</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center">
+          <div class="text-lg font-black text-amber-400">1st Place</div>
+          <div class="text-[10px] text-slate-400">VSM Hackathon</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center">
+          <div class="text-lg font-black text-blue-400">Runner-Up</div>
+          <div class="text-[10px] text-slate-400">REC Hackathon</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center">
+          <div class="text-lg font-black text-emerald-400">Immediate</div>
+          <div class="text-[10px] text-slate-400">Full-Time Availability</div>
+        </div>
+      </div>
+
+      <!-- Bullets strictly from resume -->
+      <div class="space-y-2 text-xs text-slate-300 font-sans leading-relaxed">
+        <div class="flex items-start gap-2.5">
+          <i class="fas fa-check-circle text-emerald-400 mt-1 text-xs"></i>
+          <span><strong>Hands-On AI/ML & Time-Series:</strong> Experienced training and deploying LSTM, ARIMA, XGBoost, and MobileNetV3-Small deep learning models.</span>
+        </div>
+        <div class="flex items-start gap-2.5">
+          <i class="fas fa-check-circle text-emerald-400 mt-1 text-xs"></i>
+          <span><strong>NLP & Modern RAG Pipelines:</strong> Built multilingual document retrieval apps with pgvector semantic vector search, LangChain, and Whisper voice interaction.</span>
+        </div>
+        <div class="flex items-start gap-2.5">
+          <i class="fas fa-check-circle text-emerald-400 mt-1 text-xs"></i>
+          <span><strong>Production Backend & UI:</strong> Python microservices in FastAPI/Flask with MongoDB/SQLite, coupled with high-performance React frontend architectures.</span>
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <div class="pt-4 border-t border-slate-800 flex flex-wrap gap-3 items-center justify-between">
+        <a href="mailto:kchandu12212004@gmail.com?subject=Interview%20Invitation%20-%20K%20Chandana&body=Hi%20Chandana,%0D%0A%0D%0AWe%20reviewed%20your%20portfolio%20and%20would%20like%20to%20schedule%20an%20interview%20for%20an%20engineering%20role.%0D%0A%0D%0ABest%20regards," class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-mono font-bold text-xs shadow-lg shadow-amber-500/20 transition-all hover:scale-105 inline-flex items-center gap-2">
+          <i class="fas fa-calendar-check"></i> Schedule an Interview / Hire
+        </a>
+        <button onclick="closeRecruiterModal(); openResumeDocModal();" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono font-semibold transition-colors">
+          View Complete CV
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== RESUME DOCUMENT MODAL ==================== -->
+  <div id="resume-doc-modal" class="fixed inset-0 z-50 hidden command-palette-backdrop flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="w-full max-w-4xl max-h-[92vh] flex flex-col rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden my-auto">
+      
+      <!-- Top Action Bar -->
+      <div class="px-5 py-3.5 bg-slate-950 border-b border-slate-800 flex items-center justify-between text-xs font-mono select-none">
+        <div class="flex items-center gap-2 text-white font-bold">
+          <i class="fas fa-file-invoice text-indigo-400"></i>
+          <span>Official Resume Document • K Chandana</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium flex items-center gap-1.5 transition-colors">
+            <i class="fas fa-print"></i> Print / Save PDF
+          </button>
+          <button onclick="closeResumeDocModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Printable Paper Content (Strictly Word-for-Word from Resume) -->
+      <div class="flex-1 overflow-y-auto p-4 sm:p-10 bg-slate-100 dark:bg-white text-slate-900 font-sans selection:bg-indigo-200">
+        <div class="max-w-3xl mx-auto space-y-6">
+          
+          <!-- Header -->
+          <div class="border-b-2 border-slate-900 pb-4">
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">K Chandana</h1>
+            <p class="text-xs sm:text-sm text-slate-700 font-medium mt-1">Aarogya Bhadavane , Bhagyanagara cross , Koppal 583231</p>
+            <p class="text-xs sm:text-sm text-slate-800 font-bold">Branch: Computer Science and Design</p>
+            <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-700 font-mono mt-1">
+              <span>Ph. No: +91 9353799298</span>
+              <span>•</span>
+              <span>E-mail: kchandu12212004@gmail.com</span>
+            </div>
+            <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-blue-700 font-mono mt-0.5">
+              <a href="https://www.linkedin.com/in/k-chandana-2a945a3b8/" target="_blank" class="underline">LinkedIn: linkedin.com/in/k-chandana-2a945a3b8/</a>
+              <span>•</span>
+              <a href="https://github.com/chandana-agm" target="_blank" class="underline">GitHub: github.com/chandana-agm</a>
+            </div>
+          </div>
+
+          <!-- Professional Summary -->
+          <div>
+            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-1 mb-2">Professional Summary</h2>
+            <p class="text-xs sm:text-sm text-slate-800 leading-relaxed text-justify">
+              4th-year CSD engineering student with hands-on experience developing AI-powered applications, predictive models, NLP systems, Python backends, and REST APIs. Experienced with LSTM, ARIMA, XGBoost, forecasting, text embeddings, Flask, FastAPI, React, and data processing. Hackathon winner with projects focused on solving real-world problems in agriculture, healthcare, and public assistance.
+            </p>
+          </div>
+
+          <!-- Certifications -->
+          <div>
+            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-1 mb-2">Certifications</h2>
+            <ul class="list-disc list-inside text-xs sm:text-sm text-slate-800 space-y-1">
+              <li>Artificial Intelligence Fundamentals in IBM SkillBuild.</li>
+              <li>Career Management Essentials in IBM SkillBuild.</li>
+              <li>Project Management Fundamentals in IBM SkillBuild.</li>
+            </ul>
+          </div>
+
+          <!-- Executive Summary -->
+          <div>
+            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-1 mb-2">Executive Summary</h2>
+            <ul class="list-disc list-inside text-xs sm:text-sm text-slate-800 space-y-1.5">
+              <li>Highly motivated 4th-year Computer Science and Design student with hands-on experience building, training, and deploying end-to-end AI/ML models and predictive analytics.</li>
+              <li>Skilled in Python backend services and REST API development.</li>
+              <li>Experience in developing predictive systems using machine learning and time-series techniques.</li>
+              <li>Developed NLP and text-embedding based applications for processing unstructured document structures.</li>
+              <li>Proven hackathon winner with strong problem-solving skills and commitment to contributing full-time.</li>
+            </ul>
+          </div>
+
+          <!-- Professional Strengths -->
+          <div>
+            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-1 mb-2">Professional Strengths</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 text-xs sm:text-sm text-slate-800 font-mono">
+              <div><strong>Languages:</strong> Python, C, JavaScript, TypeScript</div>
+              <div><strong>AI/ML:</strong> LSTM, ARIMA, XGBoost, Prophet, Predictive Analytics, Time-Series Forecasting</div>
+              <div><strong>AI/NLP:</strong> NLP, Text Embeddings, Retrieval Pipelines</div>
+              <div><strong>Backend:</strong> Flask, FastAPI, REST APIs, Node.js</div>
+              <div><strong>Frontend:</strong> React, React Native</div>
+              <div><strong>Data:</strong> Pandas, NumPy, EDA, Data Cleaning, Feature Engineering</div>
+              <div><strong>Database:</strong> MongoDB, Firebase, Firestore, SQLite</div>
+              <div><strong>Tools:</strong> Git, GitHub, VS Code</div>
+            </div>
+          </div>
+
+          <!-- Achievements -->
+          <div>
+            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-1 mb-2">Achievements</h2>
+            <ul class="list-disc list-inside text-xs sm:text-sm text-slate-800 space-y-1">
+              <li><strong>1st Place:</strong> VSM Nippani Hackathon - Sarkari Sahayak Bot.</li>
+              <li><strong>2nd Runner-Up:</strong> REC Hulkoti National Hackathon - Medico AI.</li>
+            </ul>
+          </div>
+
+          <!-- Projects -->
+          <div>
+            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-1 mb-2">Projects</h2>
+            
+            <div class="space-y-4 text-xs sm:text-sm text-slate-800">
+              <div>
+                <div class="font-bold text-slate-900"># Project 1: ARECANUT AI : AI-Powered Arecanut Disease Detection System</div>
+                <div class="text-xs text-slate-600 font-mono my-1">
+                  <strong>Stack:</strong> React, Vite, Tailwind CSS, Python, Flask, PyTorch, MobileNetV3-Small, Grad-CAM, OpenCV, SQLite/Firebase, Weather API, Prediction APIs
+                </div>
+                <p class="text-xs text-slate-700 leading-relaxed">
+                  Provides 9-class arecanut disease detection with confidence-aware predictions, image-quality checking, Grad-CAM explainability, weather intelligence, field monitoring, disease information, farm observation history, multilingual support, and voice-assisted guidance. (Deployment: Web Application)
+                </p>
+              </div>
+
+              <div>
+                <div class="font-bold text-slate-900"># Project 2: Sarkari Sahayak Bot : Advanced NLP Prototype (🏆 1st Place - VSM Nippani Hackathon)</div>
+                <div class="text-xs text-slate-600 font-mono my-1">
+                  <strong>Stack:</strong> React, Vite, Tailwind CSS, Framer Motion, Chart.js, Node.js, Express.js, OpenAI API, LangChain, RAG, pgvector, Whisper, MongoDB, Supabase
+                </div>
+                <p class="text-xs text-slate-700 leading-relaxed">
+                  Government Scheme Search, PDF-Based Knowledge Retrieval, Eligibility Assistance, Multilingual AI, Voice Assistant, Context-Aware Responses, Scheme Recommendations across English, Hindi, Kannada, and Marathi. (Deployment: Full-Stack Web Application)
+                </p>
+              </div>
+
+              <div>
+                <div class="font-bold text-slate-900"># Project 3: Medico AI : Drug Demand Forecasting (🥈 2nd Runner-Up - REC Hulkoti National Hackathon)</div>
+                <div class="text-xs text-slate-600 font-mono my-1">
+                  <strong>Stack:</strong> HTML, CSS, JavaScript, Python, Flask, LSTM, ARIMA, XGBoost, Pandas, NumPy, Scikit-learn, SQLite/MySQL
+                </div>
+                <p class="text-xs text-slate-700 leading-relaxed">
+                  Drug Demand Prediction, Time-Series Analysis, Inventory Forecasting, Resource Estimation, Data Visualization, Decision Support. Pipeline: Historical Data → Preprocessing → Feature Engineering → ML Forecasting → Demand Prediction. (Deployment: Flask-Based Full-Stack Application)
+                </p>
+              </div>
+
+              <div>
+                <div class="font-bold text-slate-900"># Project 4: Ice Cream Paradise – Full-Stack Food Ordering Platform (Live: https://icecreamparadise.com/)</div>
+                <div class="text-xs text-slate-600 font-mono my-1">
+                  <strong>Stack:</strong> React, Vite, JavaScript, CSS, Python, FastAPI, MongoDB, Razorpay, Axios, Netlify (Frontend), Render (Backend)
+                </div>
+                <p class="text-xs text-slate-700 leading-relaxed">
+                  100+ Menu Items, 26 Ice-Cream Flavours, Category-Based Browsing, Persistent Cart, Checkout, Online Payment, Order Tracking, Customer Feedback. Operations: Kitchen Dashboard, Delivery Dashboard, Order Status Tracking, Role-Based Authentication.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Educational Qualifications -->
+          <div>
+            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-1 mb-2">Educational Qualifications</h2>
+            <div class="space-y-1.5 text-xs sm:text-sm text-slate-800">
+              <div><strong>BACHELOR OF ENGINEERING (Computer Science and Design):</strong> At AGM College of Engineering & Technology, Current Year: 4th Year, <strong>CGPA: 8.0 / 10</strong></div>
+              <div><strong>PUC:</strong> At Shri Sharadha Science College Kidadhal Koppal - <strong>76 percentage</strong> (2022 batch)</div>
+              <div><strong>SSLC:</strong> Swami Vivekananda English Medium School Koppal - <strong>89 percentage</strong> (2020 batch)</div>
+            </div>
+          </div>
+
+          <!-- Declaration -->
+          <div class="pt-4 border-t border-slate-300">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Declaration</h2>
+            <p class="text-xs text-slate-600 italic mb-4">
+              I do hereby declare that all statements made in this resume are true and complete to the best of my knowledge and belief.
+            </p>
+            <div class="flex justify-between items-end text-xs text-slate-800 font-mono">
+              <div>
+                <div><strong>Location:</strong> Koppal, Karnataka</div>
+                <div><strong>Candidate:</strong> K Chandana</div>
+              </div>
+              <div class="text-right">
+                <div class="font-serif italic text-sm font-bold">K Chandana</div>
+                <div class="text-slate-500">Yours Sincerely</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FLOATING CLI TERMINAL MODAL ==================== -->
+  <div id="floating-cli-modal" class="fixed inset-0 z-50 hidden command-palette-backdrop flex items-center justify-center p-3 sm:p-6">
+    <div class="w-full max-w-3xl h-[520px] bg-[#070b14] border border-slate-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden font-mono text-xs sm:text-sm">
+      
+      <!-- CLI Window Top Bar -->
+      <div class="px-4 py-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between select-none">
+        <div class="flex items-center gap-2">
+          <div onclick="closeFloatingCliModal()" class="w-3 h-3 rounded-full bg-rose-500/80 cursor-pointer hover:bg-rose-500 transition-colors" title="Close CLI"></div>
+          <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+          <span class="ml-2 text-slate-400 font-semibold flex items-center gap-1.5">
+            <i class="fas fa-terminal text-cyan-400 text-xs"></i>
+            <span>chandana@csd-portfolio-cli: ~</span>
+          </span>
+        </div>
+        <button onclick="closeFloatingCliModal()" class="p-1 rounded text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+          <i class="fas fa-times text-xs"></i>
+        </button>
+      </div>
+
+      <!-- Quick Commands -->
+      <div class="px-4 py-2 bg-slate-950/80 border-b border-slate-800/80 flex flex-wrap gap-2 text-[11px]">
+        <span class="text-slate-500 self-center">Commands:</span>
+        <button class="terminal-quick-cmd px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700" data-cmd="whoami">whoami</button>
+        <button class="terminal-quick-cmd px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700" data-cmd="skills">skills</button>
+        <button class="terminal-quick-cmd px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700" data-cmd="projects">projects</button>
+        <button class="terminal-quick-cmd px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700" data-cmd="awards">awards</button>
+        <button class="terminal-quick-cmd px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700" data-cmd="education">education</button>
+        <button class="terminal-quick-cmd px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700" data-cmd="contact">contact</button>
+        <button class="terminal-quick-cmd px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700" data-cmd="resume">resume</button>
+        <button class="terminal-quick-cmd px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700" data-cmd="pitch">pitch</button>
+        <button class="terminal-quick-cmd px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700" data-cmd="clear">clear</button>
+      </div>
+
+      <!-- CLI Output Area -->
+      <div id="floating-terminal-output" class="flex-1 p-4 overflow-y-auto space-y-2.5">
+        <div class="text-cyan-400">Welcome to K Chandana's Interactive CSD Portfolio CLI [Version 2.0.0]</div>
+        <div class="text-slate-400">Candidate: Computer Science and Design (4th Year) • CGPA 8.0/10 • Koppal</div>
+        <div class="text-slate-500">Type <span class="text-white font-bold underline">help</span> or click any command shortcut above.</div>
+      </div>
+
+      <!-- CLI Input Prompt -->
+      <div class="p-3 bg-slate-950 border-t border-slate-800 flex items-center gap-2">
+        <span class="text-emerald-400 font-bold">csd@chandana:~$</span>
+        <input type="text" id="floating-terminal-input" placeholder="type command (e.g. whoami, skills, projects)..." class="flex-1 bg-transparent text-white focus:outline-none text-xs font-mono placeholder-slate-600">
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== COMMAND PALETTE MODAL (CTRL + K) ==================== -->
+  <div id="command-palette" class="fixed inset-0 z-50 hidden command-palette-backdrop flex items-start justify-center p-4 sm:pt-20">
+    <div class="w-full max-w-xl rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden font-mono">
+      <div class="p-3.5 border-b border-slate-800 flex items-center gap-3">
+        <i class="fas fa-search text-slate-400 text-xs"></i>
+        <input type="text" id="palette-input" placeholder="Type a command or jump to section (e.g. resume, api, projects, skills)..." class="w-full bg-transparent text-white placeholder-slate-500 text-xs focus:outline-none">
+        <span class="text-[10px] text-slate-500 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">ESC</span>
+      </div>
+      <div id="palette-results" class="max-h-80 overflow-y-auto p-2 space-y-1"></div>
+    </div>
+  </div>
+
+  <!-- ==================== ARCHITECTURE SPECS MODAL ==================== -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="spotlight-card w-full max-w-3xl rounded-2xl p-6 sm:p-8 border border-slate-700 bg-slate-900/95 max-h-[90vh] overflow-y-auto shadow-2xl relative my-auto">
+      
+      <!-- Close Button -->
+      <button onclick="closeProjectModal()" class="absolute top-5 right-5 w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+        <i class="fas fa-times text-sm"></i>
+      </button>
+
+      <!-- Dynamic Content Injection Container -->
+      <div id="modal-content-container"></div>
+    </div>
+  </div>
+
+  <!-- ==================== CSD DESIGN TOKENS & SYSTEM INSPECTOR MODAL ==================== -->
+  <div id="design-inspector-modal" class="fixed inset-0 z-50 hidden command-palette-backdrop flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="spotlight-card w-full max-w-2xl rounded-2xl bg-[#090e1a] border border-purple-500/40 p-6 sm:p-8 space-y-6 shadow-2xl relative my-auto">
+      
+      <button onclick="closeDesignTokensModal()" class="absolute top-5 right-5 w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+        <i class="fas fa-times text-sm"></i>
+      </button>
+
+      <div class="space-y-1">
+        <span class="hud-tag px-2.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
+          <i class="fas fa-swatchbook mr-1"></i> CSD Engineering Token System
+        </span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white font-display">CSD Design System & Component Tokens</h3>
+        <p class="text-xs text-slate-400 font-mono">Figma-to-Code Engineering Tokens calibrated for K Chandana's portfolio</p>
+      </div>
+
+      <!-- Color Tokens Swatches Grid -->
+      <div class="space-y-2">
+        <div class="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">1. Color Palette Tokens (Click to Copy Hex)</div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 font-mono text-xs">
+          <button onclick="copyText('#6366f1', 'Primary Indigo Hex')" class="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500 flex items-center gap-3 text-left transition-colors group">
+            <span class="w-6 h-6 rounded-lg bg-[#6366f1] shadow-md shadow-indigo-500/30 flex-shrink-0"></span>
+            <div>
+              <div class="text-[10px] text-slate-500">--primary-indigo</div>
+              <div class="text-xs font-bold text-white group-hover:text-indigo-400">#6366f1</div>
+            </div>
+          </button>
+          <button onclick="copyText('#10b981', 'Accent Emerald Hex')" class="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-500 flex items-center gap-3 text-left transition-colors group">
+            <span class="w-6 h-6 rounded-lg bg-[#10b981] shadow-md shadow-emerald-500/30 flex-shrink-0"></span>
+            <div>
+              <div class="text-[10px] text-slate-500">--accent-emerald</div>
+              <div class="text-xs font-bold text-white group-hover:text-emerald-400">#10b981</div>
+            </div>
+          </button>
+          <button onclick="copyText('#06b6d4', 'Cyber Cyan Hex')" class="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyan-500 flex items-center gap-3 text-left transition-colors group">
+            <span class="w-6 h-6 rounded-lg bg-[#06b6d4] shadow-md shadow-cyan-500/30 flex-shrink-0"></span>
+            <div>
+              <div class="text-[10px] text-slate-500">--cyber-cyan</div>
+              <div class="text-xs font-bold text-white group-hover:text-cyan-400">#06b6d4</div>
+            </div>
+          </button>
+          <button onclick="copyText('#f59e0b', 'Warning Amber Hex')" class="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-500 flex items-center gap-3 text-left transition-colors group">
+            <span class="w-6 h-6 rounded-lg bg-[#f59e0b] shadow-md shadow-amber-500/30 flex-shrink-0"></span>
+            <div>
+              <div class="text-[10px] text-slate-500">--amber-accent</div>
+              <div class="text-xs font-bold text-white group-hover:text-amber-400">#f59e0b</div>
+            </div>
+          </button>
+          <button onclick="copyText('#070b14', 'Dark Surface Hex')" class="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-600 flex items-center gap-3 text-left transition-colors group">
+            <span class="w-6 h-6 rounded-lg bg-[#070b14] border border-slate-700 flex-shrink-0"></span>
+            <div>
+              <div class="text-[10px] text-slate-500">--surface-bg</div>
+              <div class="text-xs font-bold text-white group-hover:text-slate-300">#070b14</div>
+            </div>
+          </button>
+          <button onclick="copyText('rgba(15, 23, 42, 0.75)', 'Card Glass Token')" class="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-600 flex items-center gap-3 text-left transition-colors group">
+            <span class="w-6 h-6 rounded-lg bg-slate-800 border border-slate-700 flex-shrink-0"></span>
+            <div>
+              <div class="text-[10px] text-slate-500">--card-glass</div>
+              <div class="text-xs font-bold text-white group-hover:text-slate-300">Blur(16px)</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Typography Metrics -->
+      <div class="space-y-2">
+        <div class="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">2. Typography Hierarchy</div>
+        <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5 font-mono text-xs">
+          <div class="flex items-center justify-between pb-2 border-b border-slate-900">
+            <span class="font-display text-white text-sm font-bold">Space Grotesk</span>
+            <span class="text-slate-500 text-[11px]">Display Headings (700 Bold)</span>
+          </div>
+          <div class="flex items-center justify-between pb-2 border-b border-slate-900">
+            <span class="font-sans text-white text-xs">Plus Jakarta Sans</span>
+            <span class="text-slate-500 text-[11px]">Humanist Body Text (400 / 500)</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-cyan-400 text-xs">JetBrains Mono</span>
+            <span class="text-slate-500 text-[11px]">Code, Terminals & HUD Metrics</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blueprint Mode Toggle inside Inspector -->
+      <div class="pt-2 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
+        <button onclick="toggleBlueprintMode()" class="px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-mono font-bold text-xs transition-all shadow-md shadow-cyan-600/30 flex items-center gap-2">
+          <i class="fas fa-drafting-compass"></i>
+          <span>Toggle Architectural Blueprint View</span>
+        </button>
+        <button onclick="closeDesignTokensModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono transition-colors">
+          Close Inspector
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== TOAST NOTIFICATION ==================== -->
+  <div id="toast" class="fixed bottom-24 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 shadow-2xl transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
+    <i id="toast-icon" class="fas fa-check-circle text-emerald-400"></i>
+    <span id="toast-message" class="text-xs font-mono text-slate-200">Action completed</span>
+  </div>
+
+  <!-- ==================== FLOATING CHANDANA AI TWIN CHATBOT ==================== -->
+  <div id="ai-chatbot-container" class="fixed bottom-6 right-4 sm:right-6 z-40 flex flex-col items-end">
+    
+    <!-- Chatbot Window -->
+    <div id="ai-chat-window" class="hidden flex-col w-[calc(100vw-2rem)] sm:w-[410px] h-[520px] max-h-[82vh] rounded-2xl bg-slate-950/95 border border-indigo-500/30 shadow-2xl shadow-indigo-950/50 backdrop-blur-xl overflow-hidden mb-3.5 transition-all duration-300 origin-bottom-right">
+      
+      <!-- Chat Header -->
+      <div class="px-4 py-3 bg-gradient-to-r from-slate-900 via-indigo-950/70 to-slate-900 border-b border-indigo-500/20 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="relative w-9 h-9 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-cyan-400 p-[2px] shadow-lg shadow-indigo-600/30">
+            <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center text-cyan-300">
+              <i class="fas fa-sparkles text-xs"></i>
+            </div>
+            <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-slate-950"></span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-xs font-bold text-white tracking-wide">Chandana AI Twin</h3>
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">DIGITAL TWIN • 8.0 CGPA</span>
+            </div>
+            <p class="text-[10px] text-emerald-400 font-mono flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+              <span>Verified AI Replica of K Chandana • Online</span>
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-1">
+          <button onclick="clearChatHistory()" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Reset Conversation">
+            <i class="fas fa-rotate-right text-xs"></i>
+          </button>
+          <button onclick="toggleAiChatbot()" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Close Twin Chat">
+            <i class="fas fa-xmark text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Message Stream -->
+      <div id="ai-chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs font-sans">
+        <!-- Messages dynamically rendered here -->
+      </div>
+
+      <!-- Quick Suggestion Chips Carousel -->
+      <div class="px-3 py-2 bg-slate-900/60 border-t border-slate-800/80 overflow-x-auto flex items-center gap-1.5 no-scrollbar">
+        <button onclick="sendQuickPrompt('Who is Chandana AI Twin?')" class="whitespace-nowrap px-2.5 py-1 rounded-full bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-[10px] font-mono transition-colors">
+          ✨ Who are you?
+        </button>
+        <button onclick="sendQuickPrompt('Tell me about your ML & AI projects')" class="whitespace-nowrap px-2.5 py-1 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 text-[10px] font-mono transition-colors">
+          🚀 ML Projects
+        </button>
+        <button onclick="sendQuickPrompt('What is your full tech stack?')" class="whitespace-nowrap px-2.5 py-1 rounded-full bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 text-[10px] font-mono transition-colors">
+          💻 Tech Stack
+        </button>
+        <button onclick="sendQuickPrompt('Why hire you as a Software Engineer?')" class="whitespace-nowrap px-2.5 py-1 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-[10px] font-mono transition-colors">
+          ⚡ Why Hire You?
+        </button>
+        <button onclick="sendQuickPrompt('What is your CGPA & College background?')" class="whitespace-nowrap px-2.5 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-[10px] font-mono transition-colors">
+          🎓 CGPA & College
+        </button>
+        <button onclick="sendQuickPrompt('How can I contact or hire you?')" class="whitespace-nowrap px-2.5 py-1 rounded-full bg-pink-500/10 hover:bg-pink-500/20 border border-pink-500/30 text-pink-300 text-[10px] font-mono transition-colors">
+          📬 Hire / Contact
+        </button>
+      </div>
+
+      <!-- Chat Input Form -->
+      <form id="ai-chat-form" class="p-2.5 bg-slate-900 border-t border-slate-800 flex items-center gap-2">
+        <input id="ai-chat-input" type="text" placeholder="Chat with Chandana AI Twin..." autocomplete="off" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors">
+        <button type="submit" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-medium transition-all shadow-md shadow-indigo-600/30 hover:scale-105 flex items-center justify-center">
+          <i class="fas fa-paper-plane text-xs"></i>
+        </button>
+      </form>
+
+    </div>
+
+    <!-- Floating Trigger Button -->
+    <button id="ai-chatbot-btn" onclick="toggleAiChatbot()" class="relative flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-mono text-xs font-bold shadow-2xl shadow-indigo-600/40 border border-indigo-400/40 hover:scale-105 active:scale-95 transition-all group" title="Chat with Chandana AI Twin">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-300"></span>
+      </span>
+      <i id="ai-chat-btn-icon" class="fas fa-sparkles text-sm group-hover:rotate-12 transition-transform text-cyan-200"></i>
+      <span id="ai-chat-btn-text" class="hidden sm:inline">Chat with Chandana AI Twin</span>
+    </button>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
